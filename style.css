@@ -1,312 +1,119 @@
-:root {
-  --bg-light: #f5f7fb;
-  --bg-dark: #121212;
-  --text-light: #222;
-  --text-dark: #e0e0e0;
-  --card-bg-light: #ffffff;
-  --card-bg-dark: #1e1e1e;
-  --accent: #003366;
-  --border-light: #dde3f0;
-}
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--bg-light);
-  color: var(--text-light);
-  transition: background 0.3s, color 0.3s;
+  background: #f5f7fb;
+  color: #222;
 }
 
-body.dark {
-  background: var(--bg-dark);
-  color: var(--text-dark);
-}
-
-body.dark .section {
-  background: var(--card-bg-dark);
-}
-
-body.dark .navbar {
-  background: #000;
-}
-
-body.dark .project-card,
-body.dark .award-card,
-body.dark .timeline-item,
-body.dark .cert-card {
-  background: #2a2a2a;
-  border-color: #444;
-}
-
-/* Theme Toggle */
-.theme-toggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 10;
-}
-#toggleTheme {
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Hero */
 .hero {
   display: flex;
-  align-items: stretch;
   padding: 40px;
-  background: var(--accent);
+  background: #003366;
   color: white;
   gap: 30px;
 }
-.hero-left,
-.hero-center,
-.hero-right {
+
+.hero-left {
   flex: 1;
 }
+
 .profile-img {
   width: 160px;
   height: 160px;
   border-radius: 50%;
   object-fit: cover;
 }
-.hero-center h1 {
-  font-size: 30px;
-  margin: 0 0 5px;
+
+.hero-center {
+  flex: 2;
 }
-.hero-center h2 {
-  font-size: 18px;
-  margin: 0 0 8px;
-}
-.hero-location {
-  font-size: 14px;
-  margin: 0 0 10px;
-}
-.hero-summary {
-  font-size: 14px;
-  line-height: 1.5;
+
+.name {
+  font-size: 32px;
   margin: 0;
 }
-.contact-box {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 15px;
-  font-size: 13px;
-}
-.contact-box h3 {
-  margin-top: 0;
-  font-size: 15px;
-}
-.contact-box a {
-  color: #e0e0ff;
-  text-decoration: none;
-}
 
-/* Navbar */
-.navbar {
-  background: #002244;
-  padding: 10px;
-  text-align: center;
-}
-.navbar a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 13px;
-}
-
-/* Sections */
-.section {
-  background: var(--card-bg-light);
-  margin: 20px auto;
-  padding: 25px;
-  width: 85%;
-  max-width: 1100px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-}
-.section h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-}
-
-/* Education */
-.edu-card {
-  display: flex;
-  margin-bottom: 20px;
-}
-.edu-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-right: 20px;
-}
-.edu-card h3 {
+.title {
   font-size: 18px;
+  margin: 5px 0;
 }
 
-/* Chips */
+.degree {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.hero-right {
+  flex: 1;
+}
+
+.contact-box {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.summary {
+  width: 85%;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.section {
+  width: 85%;
+  margin: 20px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
+
 .chip {
   background: #e3ecff;
-  padding: 6px 12px;
-  border-radius: 16px;
+  padding: 8px 14px;
+  border-radius: 20px;
   font-size: 13px;
 }
 
-/* Timeline */
+.edu-card {
+  margin-bottom: 20px;
+}
+
 .timeline {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .timeline-item {
-  display: flex;
-  gap: 15px;
-  padding: 15px;
   background: #fafbff;
-  border: 1px solid var(--border-light);
+  padding: 15px;
   border-radius: 10px;
-}
-.timeline-logo img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-.timeline-content h3 {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 600;
-}
-.timeline-date {
-  font-size: 12px;
-  color: #666;
-  display: block;
-  margin: 4px 0 8px;
-}
-.timeline-content ul {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 13px;
-  line-height: 1.5;
+  border: 1px solid #dde3f0;
 }
 
-/* Skills lists */
 .skills-list {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-/* Projects */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 15px;
-}
-.project-card {
-  background: #fafbff;
-  border: 1px solid var(--border-light);
-  padding: 15px;
-  border-radius: 8px;
-}
-.project-card h3 {
-  font-size: 16px;
-  margin: 0 0 5px;
-}
-.project-card p {
-  font-size: 13px;
-  margin: 3px 0;
+.cert-list {
+  font-size: 14px;
+  line-height: 1.8;
 }
 
-/* Awards */
-.award-card {
-  display: flex;
-  gap: 15px;
-  background: #fafbff;
-  border: 1px solid var(--border-light);
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-.award-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-.award-card h3 {
-  font-size: 16px;
-  margin: 0 0 5px;
-}
-.award-card p {
-  font-size: 13px;
-  margin: 3px 0;
-}
-
-/* Certifications */
-.cert-card {
-  background: #fafbff;
-  border: 1px solid var(--border-light);
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-.cert-card h3 {
-  font-size: 16px;
-  margin: 0 0 5px;
-}
-.cert-card p {
-  font-size: 13px;
-  margin: 3px 0;
-}
-
-/* Contact & Open to Work */
-#contact p,
-#open-to-work p {
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-/* Footer */
 footer {
   text-align: center;
-  padding: 15px;
-  background: var(--accent);
+  padding: 20px;
+  background: #003366;
   color: white;
-  margin-top: 30px;
-  font-size: 12px;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-left,
-  .hero-center,
-  .hero-right {
-    flex: none;
-  }
-  .contact-box {
-    margin-top: 15px;
-  }
-  .edu-card,
-  .timeline-item,
-  .award-card {
-    flex-direction: column;
-  }
-  .timeline-logo img,
-  .award-logo,
-  .edu-logo {
-    margin-bottom: 8px;
-  }
+  margin-top: 40px;
 }
