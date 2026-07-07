@@ -5,18 +5,7 @@ body {
   color: #222;
 }
 
-/* Center all sections */
-.section,
-.summary {
-  width: 70%;
-  margin: 30px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.06);
-}
-
-/* Hero section */
+/* Centered layout for hero and sections */
 .hero {
   width: 70%;
   margin: 30px auto 0 auto;
@@ -28,6 +17,16 @@ body {
   border-radius: 12px;
 }
 
+.section {
+  width: 70%;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.06);
+}
+
+/* Hero columns */
 .hero-left {
   flex: 1;
 }
@@ -69,10 +68,15 @@ body {
   font-size: 14px;
 }
 
+/* White LinkedIn link */
+.white-link {
+  color: white;
+  text-decoration: underline;
+}
+
 /* Section headings */
-.section h2,
-.summary h2 {
-  font-size: 26px;
+.section-title {
+  font-size: 28px;
   font-weight: 700;
   color: #003366;
   margin-top: 0;
@@ -81,7 +85,63 @@ body {
   padding-bottom: 6px;
 }
 
-/* Timeline layout */
+/* Chips for research interests */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  background: #e3ecff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Skills and lists */
+.skills-list {
+  font-size: 14px;
+  line-height: 1.6;
+  padding-left: 20px;
+}
+
+.cert-list {
+  font-size: 14px;
+  line-height: 1.8;
+  padding-left: 20px;
+}
+
+/* Projects */
+.project {
+  margin-bottom: 25px;
+}
+
+.project h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 5px;
+}
+
+.project p em {
+  font-size: 13px;
+  color: #555;
+}
+
+.project ul {
+  font-size: 14px;
+  line-height: 1.6;
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.project-skills {
+  font-size: 13px;
+  color: #444;
+}
+
+/* Timeline layout for experiences */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -98,7 +158,6 @@ body {
   align-items: flex-start;
 }
 
-/* Logo column */
 .timeline-logo img {
   width: 45px;
   height: 45px;
@@ -108,7 +167,6 @@ body {
   border-radius: 6px;
 }
 
-/* Content column */
 .timeline-content {
   flex: 1;
 }
@@ -132,18 +190,6 @@ body {
   padding-left: 20px;
   font-size: 14px;
   line-height: 1.6;
-}
-
-/* Skills */
-.skills-list {
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* Certifications */
-.cert-list {
-  font-size: 14px;
-  line-height: 1.8;
 }
 
 /* Footer */
