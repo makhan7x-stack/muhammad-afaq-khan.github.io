@@ -19,13 +19,25 @@ body {
 /* Hero section */
 .hero {
   width: 70%;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
   padding: 40px;
   background: #003366;
   color: white;
   display: flex;
   gap: 30px;
   border-radius: 12px;
+}
+
+.hero-left {
+  flex: 1;
+}
+
+.hero-center {
+  flex: 2;
+}
+
+.hero-right {
+  flex: 1;
 }
 
 .profile-img {
@@ -70,6 +82,12 @@ body {
 }
 
 /* Timeline layout */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .timeline-item {
   display: flex;
   gap: 20px;
