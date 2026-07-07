@@ -48,6 +48,11 @@ a:hover {
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
+.hero-left {
+  display: flex;
+  align-items: center;
+}
+
 .profile-img {
   width: 160px;
   height: 160px;
@@ -57,7 +62,7 @@ a:hover {
 }
 
 .hero-center .name {
-  font-size: 30px;
+  font-size: 28px;
   margin: 0 0 5px 0;
 }
 
@@ -71,9 +76,9 @@ a:hover {
   margin: 3px 0;
 }
 
-.hero-center .location {
-  font-size: 14px;
-  margin-top: 8px;
+.hero-right {
+  display: flex;
+  align-items: center;
 }
 
 .contact-box p {
@@ -98,6 +103,13 @@ a:hover {
   color: #003366;
   border-bottom: 2px solid #003366;
   padding-bottom: 5px;
+}
+
+.subheading {
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  color: #003366;
 }
 
 .section p,
@@ -127,6 +139,13 @@ a:hover {
 
 .proj-block {
   margin-bottom: 20px;
+}
+
+/* Separator line */
+.separator {
+  border: none;
+  border-top: 1px solid #ccd3e0;
+  margin: 15px 0;
 }
 
 /* Hover cards */
@@ -159,7 +178,7 @@ li {
 
   .hero-left,
   .hero-right {
-    text-align: center;
+    justify-content: center;
   }
 
   .section {
