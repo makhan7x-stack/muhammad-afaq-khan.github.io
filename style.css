@@ -1,21 +1,29 @@
-/* Light Theme */
+/* Base */
+:root {
+  --bg-light: #f5f7fb;
+  --bg-dark: #121212;
+  --text-light: #222;
+  --text-dark: #e0e0e0;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e1e1e;
+  --accent: #003366;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #222;
+  background: var(--bg-light);
+  color: var(--text-light);
   transition: background 0.3s, color 0.3s;
 }
 
-/* Dark Theme */
 body.dark {
-  background: #121212;
-  color: #e0e0e0;
+  background: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 body.dark .section {
-  background: #1e1e1e;
-  color: #e0e0e0;
+  background: var(--card-bg-dark);
 }
 
 body.dark .navbar {
@@ -23,7 +31,8 @@ body.dark .navbar {
 }
 
 body.dark .project-card,
-body.dark .award-card {
+body.dark .award-card,
+body.dark .timeline-item {
   background: #2a2a2a;
   border-color: #444;
 }
@@ -33,6 +42,7 @@ body.dark .award-card {
   position: fixed;
   top: 10px;
   right: 10px;
+  z-index: 10;
 }
 #toggleTheme {
   padding: 8px 12px;
@@ -46,7 +56,7 @@ body.dark .award-card {
   display: flex;
   align-items: center;
   padding: 40px;
-  background: #003366;
+  background: var(--accent);
   color: white;
 }
 .profile-img {
@@ -64,6 +74,9 @@ body.dark .award-card {
   font-size: 20px;
   margin: 5px 0;
 }
+.hero-text p {
+  margin: 5px 0;
+}
 
 /* Navbar */
 .navbar {
@@ -76,20 +89,21 @@ body.dark .award-card {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 14px;
 }
 
 /* Sections */
 .section {
-  background: white;
+  background: var(--card-bg-light);
   margin: 20px auto;
   padding: 25px;
   width: 85%;
   max-width: 1000px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
 }
 .section h2 {
-  font-size: 26px;
+  font-size: 24px;
   margin-bottom: 15px;
 }
 
@@ -105,22 +119,44 @@ body.dark .award-card {
   margin-right: 20px;
 }
 .edu-card h3 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
-/* Experience */
-.exp-card {
+/* Timeline */
+.timeline {
   display: flex;
-  margin-bottom: 20px;
+  flex-direction: column;
+  gap: 30px;
 }
-.exp-logo {
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #fafbff;
+  border: 1px solid #dde3f0;
+  border-radius: 10px;
+}
+.timeline-logo img {
   width: 70px;
   height: 70px;
   object-fit: contain;
-  margin-right: 20px;
 }
-.exp-card h3 {
-  font-size: 20px;
+.timeline-content h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.timeline-date {
+  font-size: 13px;
+  color: #666;
+  display: block;
+  margin: 5px 0 10px;
+}
+.timeline-content ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 /* Projects */
@@ -136,13 +172,12 @@ body.dark .award-card {
   border-radius: 8px;
 }
 .project-card h3 {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* Awards */
 .award-card {
   display: flex;
-  align-items: flex-start;
   gap: 15px;
   background: #fafbff;
   border: 1px solid #dde3f0;
@@ -155,6 +190,9 @@ body.dark .award-card {
   height: 60px;
   object-fit: contain;
 }
+.award-card h3 {
+  font-size: 16px;
+}
 
 /* Skills */
 .chips {
@@ -166,6 +204,11 @@ body.dark .award-card {
   background: #e3ecff;
   padding: 6px 12px;
   border-radius: 16px;
+  font-size: 13px;
+}
+
+/* Contact */
+#contact p {
   font-size: 14px;
 }
 
@@ -173,7 +216,24 @@ body.dark .award-card {
 footer {
   text-align: center;
   padding: 20px;
-  background: #003366;
+  background: var(--accent);
   color: white;
   margin-top: 40px;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-img {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  .edu-card,
+  .timeline-item {
+    flex-direction: column;
+  }
 }
