@@ -1,71 +1,168 @@
-/* General Page Styling */
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
+  background: #f5f7fb;
+  color: #222;
 }
 
-/* Header */
-header {
-  background: #003366;
+/* Hero */
+.hero {
+  display: flex;
+  padding: 40px 10%;
+  background: linear-gradient(135deg, #003366, #005599);
   color: white;
-  padding: 30px 20px;
-  text-align: center;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 36px;
+.hero-left { flex: 0 0 auto; }
+.hero-right { flex: 1; padding-left: 30px; }
+.profile-img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff55;
 }
-
-header h2 {
-  margin: 10px 0 20px;
-  font-size: 18px;
-  font-weight: normal;
-}
-
-/* Navigation */
-nav {
-  margin-top: 20px;
-}
-
-nav a {
-  color: white;
+.hero h1 { margin: 0 0 10px; font-size: 32px; }
+.hero h2 { margin: 0 0 10px; font-size: 20px; font-weight: 500; }
+.hero p { margin: 0 0 20px; max-width: 600px; }
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+  display: inline-block;
+  padding: 10px 18px;
+  margin-right: 10px;
+  border-radius: 20px;
   text-decoration: none;
-  margin: 0 15px;
-  font-size: 16px;
+  font-size: 14px;
+}
+.btn-primary {
+  background: #ffcc00;
+  color: #003366;
   font-weight: bold;
 }
-
-nav a:hover {
-  text-decoration: underline;
+.btn-secondary {
+  border: 1px solid #ffffffaa;
+  color: white;
 }
+
+/* Navbar */
+.navbar {
+  background: #002244;
+  text-align: center;
+  padding: 10px;
+}
+.navbar a {
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.navbar a:hover { text-decoration: underline; }
 
 /* Sections */
-section {
+.section {
   background: white;
   margin: 20px auto;
-  padding: 20px;
-  width: 85%;
-  max-width: 900px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 25px;
+  width: 90%;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
-
-section h2 {
+.section h2 {
+  margin-top: 0;
   color: #003366;
-  margin-bottom: 10px;
 }
 
-section ul {
-  padding-left: 20px;
+/* Chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  background: #e3ecff;
+  color: #003366;
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 13px;
 }
 
-section li {
-  margin-bottom: 8px;
+/* Experience */
+.exp-card {
+  display: flex;
+  margin-bottom: 20px;
+}
+.exp-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+.exp-content h3 {
+  margin: 0 0 5px;
+}
+.exp-meta {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #555;
+}
+.exp-content ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* Education */
+.edu-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.edu-item {
+  display: flex;
+}
+.edu-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+.edu-content h3 {
+  margin: 0 0 5px;
+}
+.edu-meta {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #555;
+}
+.edu-content ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+}
+.project-card {
+  border-radius: 8px;
+  border: 1px solid #dde3f0;
+  padding: 15px;
+  background: #fafbff;
+}
+.project-card h3 {
+  margin: 0 0 5px;
+}
+.proj-meta {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #555;
+}
+.proj-tags {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #003366;
 }
 
 /* Footer */
@@ -74,5 +171,25 @@ footer {
   padding: 20px;
   background: #003366;
   color: white;
-  margin-top: 40px;
+  margin-top: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-right {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+  .exp-card,
+  .edu-item {
+    flex-direction: column;
+  }
+  .exp-logo,
+  .edu-logo {
+    margin-bottom: 10px;
+  }
 }
