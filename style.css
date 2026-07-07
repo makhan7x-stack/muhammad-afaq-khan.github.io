@@ -1,3 +1,4 @@
+/* Global layout and typography */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -5,7 +6,36 @@ body {
   color: #222;
 }
 
-/* HERO SECTION */
+a {
+  color: #003366;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0055aa;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+/* Hero section */
 .hero {
   width: 80%;
   margin: 30px auto;
@@ -15,6 +45,7 @@ body {
   display: flex;
   gap: 30px;
   border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .profile-img {
@@ -22,70 +53,132 @@ body {
   height: 160px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid #ffffff;
 }
 
 .hero-center .name {
-  font-size: 32px;
-  margin: 0;
+  font-size: 30px;
+  margin: 0 0 5px 0;
 }
 
 .hero-center .title {
-  font-size: 20px;
-  margin: 5px 0;
+  font-size: 18px;
+  margin: 3px 0;
 }
 
 .hero-center .degree {
   font-size: 16px;
-  margin: 5px 0;
+  margin: 3px 0;
+}
+
+.hero-center .location {
+  font-size: 14px;
+  margin-top: 8px;
 }
 
 .contact-box p {
-  margin: 6px 0;
+  margin: 4px 0;
+  font-size: 14px;
 }
 
-/* SECTIONS */
+/* Sections */
 .section {
   width: 80%;
-  margin: 30px auto;
+  margin: 25px auto;
   background: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0,0,0,0.06);
 }
 
-.section h2 {
+.section-title {
   margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
   color: #003366;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 5px;
 }
 
-/* EDUCATION & EXPERIENCE LOGOS */
-.edu-logo,
-.exp-logo {
-  width: 60px;
+.section p,
+.section li {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Logos and blocks */
+.logo-left {
+  width: 50px;
   height: auto;
-  float: left;
   margin-right: 15px;
 }
 
-/* EXPERIENCE BLOCKS */
+.edu-block,
 .exp-block {
-  margin-bottom: 25px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
-/* PROJECT BLOCKS */
+.edu-text,
+.exp-text {
+  flex: 1;
+}
+
 .proj-block {
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
 }
 
+/* Hover cards */
+.hover-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Lists */
 ul {
-  margin-top: 10px;
+  margin-top: 8px;
   padding-left: 20px;
 }
 
 li {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    text-align: center;
+  }
+
+  .section {
+    width: 90%;
+  }
+
+  .edu-block,
+  .exp-block {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 600px) {
+  .edu-block,
+  .exp-block {
+    flex-direction: column;
+  }
+
+  .logo-left {
+    margin-bottom: 10px;
+  }
 }
