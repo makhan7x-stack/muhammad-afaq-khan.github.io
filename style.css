@@ -1,65 +1,56 @@
 /* =============================================================
-   Muhammad Afaq Khan — Portfolio Stylesheet
-   Drop this in place of your current style.css.
-   No HTML changes needed — matches your existing class names.
+   Muhammad Afaq Khan — Portfolio Stylesheet v2
+   "Engineering editorial" direction — bold, framed, high-contrast.
+   Drop straight in place of style.css. No HTML changes needed.
    ============================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap');
 
 :root{
-  --ink:#171b1a;        /* near-black graphite, primary text */
-  --paper:#edeee7;       /* warm grey-neutral background */
-  --paper-2:#e2e3da;      /* slightly deeper panel background */
-  --teal:#1c4e5c;        /* deep hydrogen-blue accent */
-  --ochre:#b8752e;       /* amber accent for data/highlights */
-  --sage:#5c7a5e;        /* muted green accent, secondary */
-  --line:#c3c6bb;        /* hairline border colour */
-  --white:#f7f7f2;
+  --ink:#12241f;          /* deep forest-ink, primary text */
+  --paper:#f6f4ec;        /* warm bone-white background */
+  --panel:#ffffff;        /* card background */
+  --rust:#b6491f;         /* burnt-rust accent, primary */
+  --gold:#c9962c;         /* muted gold, secondary accent */
+  --forest:#2f4a3c;       /* deep green, tertiary accent */
+  --line:#d8d2c0;         /* hairline border */
+  --muted:#5c5f56;
 }
 
-/* ---------- Global ---------- */
 *{ box-sizing:border-box; }
+
+html{ background:var(--ink); }
 
 body{
   margin:0;
   background:var(--paper);
   color:var(--ink);
-  font-family:'Source Serif 4', Georgia, serif;
-  font-size:17px;
+  font-family:'Inter', -apple-system, sans-serif;
+  font-size:16.5px;
   line-height:1.65;
+  /* the framed-page effect: a thick ink border around the whole document */
+  border:10px solid var(--ink);
+  min-height:100vh;
 }
 
 a{
-  color:var(--teal);
+  color:var(--rust);
   text-decoration:none;
-  border-bottom:1px solid transparent;
-  transition:border-color .2s ease, color .2s ease;
+  border-bottom:1px solid currentColor;
 }
-a:hover{
-  color:var(--ochre);
-  border-bottom-color:var(--ochre);
-}
+a:hover{ color:var(--forest); }
 
-/* Headings borrow the technical display face throughout */
 h1,h2,h3,h4{
-  font-family:'Space Grotesk', sans-serif;
-  letter-spacing:-0.01em;
+  font-family:'Fraunces', Georgia, serif;
+  letter-spacing:-0.015em;
   color:var(--ink);
   margin:0;
 }
 
-/* ---------- Animations (kept, slightly refined) ---------- */
-@keyframes fadeIn{
-  from{ opacity:0; transform:translateY(-8px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-@keyframes slideUp{
-  from{ opacity:0; transform:translateY(16px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-.fade-in{ animation:fadeIn .7s ease-out; }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(-8px);} to{opacity:1; transform:translateY(0);} }
+@keyframes slideUp{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+.fade-in{ animation:fadeIn .8s ease-out; }
 .slide-up{ animation:slideUp .7s ease-out both; }
-/* stagger sections slightly as they load */
 .slide-up:nth-of-type(2){ animation-delay:.05s; }
 .slide-up:nth-of-type(3){ animation-delay:.1s; }
 .slide-up:nth-of-type(4){ animation-delay:.15s; }
@@ -68,250 +59,223 @@ h1,h2,h3,h4{
 /* ---------- Hero ---------- */
 .hero{
   width:auto;
-  max-width:1080px;
-  margin:40px auto 32px;
-  padding:56px 48px;
-  background:var(--ink);
-  color:var(--white);
+  max-width:1040px;
+  margin:56px auto 40px;
+  padding:0 0 44px;
+  background:transparent;
+  color:var(--ink);
   display:flex;
-  align-items:center;
-  gap:36px;
-  border-radius:4px;
-  position:relative;
-  overflow:hidden;
+  align-items:flex-end;
+  gap:40px;
+  border-radius:0;
+  border-bottom:3px solid var(--ink);
   box-shadow:none;
+  position:relative;
 }
-/* subtle process-line motif across the hero, echoes your engineering work */
-.hero::after{
-  content:"";
+/* running index label, like a plate number on a technical drawing */
+.hero::before{
+  content:"PORTFOLIO / 2026";
   position:absolute;
-  left:0; right:0; bottom:0;
-  height:3px;
-  background:linear-gradient(90deg, var(--teal), var(--ochre), var(--sage));
+  top:-34px; left:0;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px;
+  letter-spacing:.18em;
+  color:var(--muted);
 }
 
-.hero-left{ display:flex; align-items:center; flex-shrink:0; }
+.hero-left{ display:flex; align-items:flex-end; flex-shrink:0; }
 .profile-img{
-  width:132px; height:132px;
-  border-radius:50%;
+  width:150px; height:150px;
+  border-radius:0;
   object-fit:cover;
-  border:2px solid var(--ochre);
-  filter:grayscale(15%);
+  border:3px solid var(--ink);
+  filter:grayscale(60%) contrast(1.05);
 }
 
 .hero-center{ flex:1; }
 .hero-center .name{
-  font-size:30px;
-  font-weight:700;
-  color:var(--white);
-  margin:0 0 8px 0;
-  letter-spacing:-0.01em;
+  font-size:clamp(34px,5vw,52px);
+  font-weight:900;
+  color:var(--ink);
+  margin:0;
+  line-height:1.02;
 }
 .hero-center .title{
   font-family:'IBM Plex Mono', monospace;
-  font-size:14px;
-  font-weight:400;
-  letter-spacing:.02em;
-  color:#cfe0e2;
-  margin:4px 0;
-  text-transform:none;
+  font-size:13.5px;
+  font-weight:500;
+  letter-spacing:.03em;
+  color:var(--rust);
+  margin:14px 0 0;
+  text-transform:uppercase;
 }
 .hero-center .degree{
   font-size:14.5px;
-  color:#a9ada4;
+  color:var(--muted);
   margin:8px 0 0;
-  font-family:'Source Serif 4', serif;
-  font-style:italic;
+  font-family:'Inter', sans-serif;
+  font-style:normal;
 }
 
-.hero-right{ display:flex; align-items:center; flex-shrink:0; }
+.hero-right{ display:flex; align-items:flex-end; flex-shrink:0; }
 .contact-box{
   font-family:'IBM Plex Mono', monospace;
-  border-left:1px solid rgba(255,255,255,.25);
-  padding-left:24px;
+  border-left:2px solid var(--ink);
+  padding-left:20px;
+  text-align:left;
 }
-.contact-box p{
-  margin:6px 0;
-  font-size:12.5px;
-  color:#cfe0e2;
-}
-.contact-box strong{
-  color:var(--white);
-  font-weight:500;
-  margin-right:4px;
-}
-.contact-box a{
-  color:var(--ochre);
-  border-bottom-color:transparent;
-}
-.contact-box a:hover{ color:var(--white); border-bottom-color:var(--white); }
+.contact-box p{ margin:5px 0; font-size:12px; color:var(--muted); }
+.contact-box strong{ color:var(--ink); font-weight:600; display:block; font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
+.contact-box p:first-child strong{ margin-top:0; }
+.contact-box a{ color:var(--rust); border-bottom-color:transparent; }
+.contact-box a:hover{ border-bottom-color:var(--rust); }
 
 /* ---------- Section shells ---------- */
 .section{
   width:auto;
-  max-width:1080px;
-  margin:28px auto;
-  background:var(--white);
-  padding:40px 48px;
-  border-radius:4px;
-  border:1px solid var(--line);
+  max-width:1040px;
+  margin:0 auto;
+  background:transparent;
+  padding:40px 0;
+  border-radius:0;
   box-shadow:none;
+  border-bottom:1px solid var(--line);
 }
+.section:last-of-type{ border-bottom:none; }
 
 .section-title{
-  margin:0 0 24px 0;
-  font-size:13px;
-  font-weight:600;
-  color:var(--teal);
+  margin:0 0 26px 0;
+  font-size:clamp(22px,2.6vw,28px);
+  font-weight:700;
+  color:var(--ink);
   border-bottom:none;
   padding-bottom:0;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-family:'IBM Plex Mono', monospace;
   display:flex;
-  align-items:center;
-  gap:12px;
+  align-items:baseline;
+  gap:14px;
 }
 .section-title::before{
-  content:"";
-  width:22px; height:1px;
-  background:var(--ochre);
-  display:inline-block;
+  content:"§";
+  font-family:'IBM Plex Mono', monospace;
+  font-size:15px;
+  font-weight:500;
+  color:var(--rust);
 }
-/* the actual visible heading text sits larger, right under the eyebrow —
-   if your h2 IS the section-title, this still reads fine on its own */
 
 .subheading{
-  font-size:15px;
+  font-size:14px;
   font-weight:600;
-  margin-top:22px;
+  margin-top:24px;
   margin-bottom:10px;
-  color:var(--ink);
-  font-family:'Space Grotesk', sans-serif;
+  color:var(--forest);
+  font-family:'IBM Plex Mono', monospace;
+  text-transform:uppercase;
+  letter-spacing:.06em;
 }
 
 .section p,
 .section li{
   font-size:15.5px;
-  line-height:1.65;
-  color:#3a3f3c;
+  line-height:1.7;
+  color:#2b2e29;
 }
 
 /* ---------- Logos / experience & education blocks ---------- */
 .logo-left{
-  width:44px;
+  width:40px;
   height:auto;
-  margin-right:18px;
-  filter:grayscale(100%) contrast(1.1);
-  opacity:.85;
+  margin-right:20px;
+  filter:grayscale(100%) contrast(1.2);
+  opacity:.8;
 }
 
 .edu-block,
 .exp-block{
   display:flex;
   align-items:flex-start;
-  margin-bottom:26px;
-  padding-bottom:26px;
-  border-bottom:1px solid var(--line);
+  margin-bottom:0;
+  padding:24px 0;
+  border-top:1px solid var(--line);
   position:relative;
 }
-.edu-block:last-child,
-.exp-block:last-child{
-  margin-bottom:0;
-  padding-bottom:0;
-  border-bottom:none;
-}
+.edu-block:first-of-type,
+.exp-block:first-of-type{ border-top:none; padding-top:0; }
 
 .edu-text,
 .exp-text{ flex:1; }
 
 .edu-text h3,
 .exp-text h3{
-  font-size:17px;
-  font-weight:600;
-  margin-bottom:6px;
-  line-height:1.35;
+  font-size:18.5px;
+  font-weight:700;
+  margin-bottom:8px;
+  line-height:1.3;
 }
 
-.edu-text ul,
-.exp-text ul{
-  margin-top:10px;
-}
-
-.edu-text li,
-.exp-text li{
-  position:relative;
-  padding-left:2px;
-}
+.edu-text ul, .exp-text ul{ margin-top:12px; }
 
 /* ---------- Projects ---------- */
 .proj-block{
-  margin-bottom:24px;
-  padding:20px 22px;
-  background:var(--paper-2);
-  border-left:3px solid var(--teal);
-  border-radius:0 3px 3px 0;
+  margin-bottom:0;
+  padding:22px 0;
+  background:transparent;
+  border-top:1px solid var(--line);
+  border-left:none;
+  border-radius:0;
 }
-.proj-block:last-child{ margin-bottom:0; }
+.proj-block:first-of-type{ border-top:none; padding-top:0; }
 .proj-block h3{
-  font-size:16.5px;
-  font-weight:600;
+  font-size:17px;
+  font-weight:700;
   margin-bottom:4px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.proj-block h3::before{
+  content:"";
+  width:8px; height:8px;
+  background:var(--gold);
+  display:inline-block;
+  flex-shrink:0;
 }
 .proj-block p strong{
   font-family:'IBM Plex Mono', monospace;
-  font-size:12px;
-  color:var(--sage);
-  font-weight:500;
+  font-size:11.5px;
+  color:var(--forest);
+  font-weight:600;
+  letter-spacing:.03em;
 }
 
 /* ---------- Separator ---------- */
-.separator{
-  border:none;
-  border-top:1px solid var(--line);
-  margin:18px 0;
-}
+.separator{ border:none; border-top:1px solid var(--line); margin:20px 0; }
 
 /* ---------- Hover cards ---------- */
-.hover-card{
-  transition:transform .18s ease, border-color .18s ease;
-}
+.hover-card{ transition:padding-left .18s ease, border-color .18s ease; }
 .hover-card:hover{
-  transform:translateX(4px);
-  border-color:var(--ochre);
+  padding-left:14px;
+  border-left:3px solid var(--rust);
 }
 
 /* ---------- Lists ---------- */
 ul{ margin-top:10px; padding-left:20px; }
-li{
-  margin-bottom:8px;
-  padding-left:2px;
-}
-li::marker{ color:var(--ochre); }
+li{ margin-bottom:9px; padding-left:2px; }
+li::marker{ color:var(--rust); font-family:'IBM Plex Mono', monospace; }
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
-  .hero{
-    flex-direction:column;
-    align-items:flex-start;
-    text-align:left;
-    padding:40px 32px;
-  }
+  body{ border-width:6px; }
+  .hero{ flex-direction:column; align-items:flex-start; text-align:left; }
   .hero-right{ align-self:stretch; }
   .contact-box{
-    border-left:none;
-    border-top:1px solid rgba(255,255,255,.25);
-    padding-left:0;
-    padding-top:16px;
-    margin-top:8px;
-    width:100%;
+    border-left:none; border-top:2px solid var(--ink);
+    padding-left:0; padding-top:16px; margin-top:12px; width:100%;
   }
-  .section{ padding:32px 28px; }
 }
 
 @media (max-width:600px){
-  .edu-block,
-  .exp-block{ flex-direction:column; }
+  .edu-block, .exp-block{ flex-direction:column; }
   .logo-left{ margin-bottom:12px; }
-  .hero-center .name{ font-size:24px; }
+  .hero-center .name{ font-size:28px; }
+  body{ border-width:4px; }
 }
