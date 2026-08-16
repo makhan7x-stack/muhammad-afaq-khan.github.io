@@ -164,12 +164,19 @@ h1,h2,h3,h4{
   color:#1c2431;
 }
 
-/* ---------- Skills as tag grid ---------- */
-.subheading + ul{
+/* =========================================================
+   CHIP-GRID LISTS — any list that sits directly under a section
+   title (Research Interests, Soft Skills, Certifications, Honors,
+   Languages) OR under a .subheading (Technical Skills) renders as
+   the same small bordered chip grid, same colours throughout.
+   ========================================================= */
+.subheading + ul,
+.section-title + ul{
   display:flex; flex-wrap:wrap; gap:10px;
   margin-top:14px; padding-left:0; list-style:none;
 }
-.subheading + ul li{
+.subheading + ul li,
+.section-title + ul li{
   font-family:'IBM Plex Mono', monospace;
   font-size:13px; color:var(--ink);
   background:var(--paper);
@@ -178,6 +185,8 @@ h1,h2,h3,h4{
   padding:9px 16px; margin:0;
   border-radius:0 3px 3px 0;
 }
+.subheading + ul li::marker,
+.section-title + ul li::marker{ content:none; }
 
 /* =========================================================
    LOGOS — larger, full colour, crisp rendering. If a logo still
