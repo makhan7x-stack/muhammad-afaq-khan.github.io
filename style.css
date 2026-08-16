@@ -1,203 +1,317 @@
-/* Global layout and typography */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #222;
+/* =============================================================
+   Muhammad Afaq Khan — Portfolio Stylesheet
+   Drop this in place of your current style.css.
+   No HTML changes needed — matches your existing class names.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#171b1a;        /* near-black graphite, primary text */
+  --paper:#edeee7;       /* warm grey-neutral background */
+  --paper-2:#e2e3da;      /* slightly deeper panel background */
+  --teal:#1c4e5c;        /* deep hydrogen-blue accent */
+  --ochre:#b8752e;       /* amber accent for data/highlights */
+  --sage:#5c7a5e;        /* muted green accent, secondary */
+  --line:#c3c6bb;        /* hairline border colour */
+  --white:#f7f7f2;
 }
 
-a {
-  color: #003366;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* ---------- Global ---------- */
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Source Serif 4', Georgia, serif;
+  font-size:17px;
+  line-height:1.65;
 }
 
-a:hover {
-  color: #0055aa;
+a{
+  color:var(--teal);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .2s ease, color .2s ease;
+}
+a:hover{
+  color:var(--ochre);
+  border-bottom-color:var(--ochre);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Headings borrow the technical display face throughout */
+h1,h2,h3,h4{
+  font-family:'Space Grotesk', sans-serif;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  margin:0;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ---------- Animations (kept, slightly refined) ---------- */
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(-8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+@keyframes slideUp{
+  from{ opacity:0; transform:translateY(16px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.fade-in{ animation:fadeIn .7s ease-out; }
+.slide-up{ animation:slideUp .7s ease-out both; }
+/* stagger sections slightly as they load */
+.slide-up:nth-of-type(2){ animation-delay:.05s; }
+.slide-up:nth-of-type(3){ animation-delay:.1s; }
+.slide-up:nth-of-type(4){ animation-delay:.15s; }
+.slide-up:nth-of-type(5){ animation-delay:.2s; }
+
+/* ---------- Hero ---------- */
+.hero{
+  width:auto;
+  max-width:1080px;
+  margin:40px auto 32px;
+  padding:56px 48px;
+  background:var(--ink);
+  color:var(--white);
+  display:flex;
+  align-items:center;
+  gap:36px;
+  border-radius:4px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:none;
+}
+/* subtle process-line motif across the hero, echoes your engineering work */
+.hero::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--teal), var(--ochre), var(--sage));
 }
 
-.fade-in {
-  animation: fadeIn 0.8s ease-out;
+.hero-left{ display:flex; align-items:center; flex-shrink:0; }
+.profile-img{
+  width:132px; height:132px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid var(--ochre);
+  filter:grayscale(15%);
 }
 
-.slide-up {
-  animation: slideUp 0.8s ease-out;
+.hero-center{ flex:1; }
+.hero-center .name{
+  font-size:30px;
+  font-weight:700;
+  color:var(--white);
+  margin:0 0 8px 0;
+  letter-spacing:-0.01em;
+}
+.hero-center .title{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:.02em;
+  color:#cfe0e2;
+  margin:4px 0;
+  text-transform:none;
+}
+.hero-center .degree{
+  font-size:14.5px;
+  color:#a9ada4;
+  margin:8px 0 0;
+  font-family:'Source Serif 4', serif;
+  font-style:italic;
 }
 
-/* Hero section */
-.hero {
-  width: 80%;
-  margin: 30px auto;
-  padding: 40px;
-  background: #003366;
-  color: white;
-  display: flex;
-  gap: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+.hero-right{ display:flex; align-items:center; flex-shrink:0; }
+.contact-box{
+  font-family:'IBM Plex Mono', monospace;
+  border-left:1px solid rgba(255,255,255,.25);
+  padding-left:24px;
+}
+.contact-box p{
+  margin:6px 0;
+  font-size:12.5px;
+  color:#cfe0e2;
+}
+.contact-box strong{
+  color:var(--white);
+  font-weight:500;
+  margin-right:4px;
+}
+.contact-box a{
+  color:var(--ochre);
+  border-bottom-color:transparent;
+}
+.contact-box a:hover{ color:var(--white); border-bottom-color:var(--white); }
+
+/* ---------- Section shells ---------- */
+.section{
+  width:auto;
+  max-width:1080px;
+  margin:28px auto;
+  background:var(--white);
+  padding:40px 48px;
+  border-radius:4px;
+  border:1px solid var(--line);
+  box-shadow:none;
 }
 
-.hero-left {
-  display: flex;
-  align-items: center;
+.section-title{
+  margin:0 0 24px 0;
+  font-size:13px;
+  font-weight:600;
+  color:var(--teal);
+  border-bottom:none;
+  padding-bottom:0;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-family:'IBM Plex Mono', monospace;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
-
-.profile-img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ffffff;
+.section-title::before{
+  content:"";
+  width:22px; height:1px;
+  background:var(--ochre);
+  display:inline-block;
 }
+/* the actual visible heading text sits larger, right under the eyebrow —
+   if your h2 IS the section-title, this still reads fine on its own */
 
-.hero-center .name {
-  font-size: 28px;
-  margin: 0 0 5px 0;
-}
-
-.hero-center .title {
-  font-size: 18px;
-  margin: 3px 0;
-}
-
-.hero-center .degree {
-  font-size: 16px;
-  margin: 3px 0;
-}
-
-.hero-right {
-  display: flex;
-  align-items: center;
-}
-
-.contact-box p {
-  margin: 4px 0;
-  font-size: 14px;
-}
-
-/* Sections */
-.section {
-  width: 80%;
-  margin: 25px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.06);
-}
-
-.section-title {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 20px;
-  color: #003366;
-  border-bottom: 2px solid #003366;
-  padding-bottom: 5px;
-}
-
-.subheading {
-  font-size: 16px;
-  margin-top: 15px;
-  margin-bottom: 8px;
-  color: #003366;
+.subheading{
+  font-size:15px;
+  font-weight:600;
+  margin-top:22px;
+  margin-bottom:10px;
+  color:var(--ink);
+  font-family:'Space Grotesk', sans-serif;
 }
 
 .section p,
-.section li {
-  font-size: 14px;
-  line-height: 1.5;
+.section li{
+  font-size:15.5px;
+  line-height:1.65;
+  color:#3a3f3c;
 }
 
-/* Logos and blocks */
-.logo-left {
-  width: 50px;
-  height: auto;
-  margin-right: 15px;
+/* ---------- Logos / experience & education blocks ---------- */
+.logo-left{
+  width:44px;
+  height:auto;
+  margin-right:18px;
+  filter:grayscale(100%) contrast(1.1);
+  opacity:.85;
 }
 
 .edu-block,
-.exp-block {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
+.exp-block{
+  display:flex;
+  align-items:flex-start;
+  margin-bottom:26px;
+  padding-bottom:26px;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.edu-block:last-child,
+.exp-block:last-child{
+  margin-bottom:0;
+  padding-bottom:0;
+  border-bottom:none;
 }
 
 .edu-text,
-.exp-text {
-  flex: 1;
+.exp-text{ flex:1; }
+
+.edu-text h3,
+.exp-text h3{
+  font-size:17px;
+  font-weight:600;
+  margin-bottom:6px;
+  line-height:1.35;
 }
 
-.proj-block {
-  margin-bottom: 20px;
+.edu-text ul,
+.exp-text ul{
+  margin-top:10px;
 }
 
-/* Separator line */
-.separator {
-  border: none;
-  border-top: 1px solid #ccd3e0;
-  margin: 15px 0;
+.edu-text li,
+.exp-text li{
+  position:relative;
+  padding-left:2px;
 }
 
-/* Hover cards */
-.hover-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ---------- Projects ---------- */
+.proj-block{
+  margin-bottom:24px;
+  padding:20px 22px;
+  background:var(--paper-2);
+  border-left:3px solid var(--teal);
+  border-radius:0 3px 3px 0;
+}
+.proj-block:last-child{ margin-bottom:0; }
+.proj-block h3{
+  font-size:16.5px;
+  font-weight:600;
+  margin-bottom:4px;
+}
+.proj-block p strong{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--sage);
+  font-weight:500;
 }
 
-.hover-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+/* ---------- Separator ---------- */
+.separator{
+  border:none;
+  border-top:1px solid var(--line);
+  margin:18px 0;
 }
 
-/* Lists */
-ul {
-  margin-top: 8px;
-  padding-left: 20px;
+/* ---------- Hover cards ---------- */
+.hover-card{
+  transition:transform .18s ease, border-color .18s ease;
+}
+.hover-card:hover{
+  transform:translateX(4px);
+  border-color:var(--ochre);
 }
 
-li {
-  margin-bottom: 6px;
+/* ---------- Lists ---------- */
+ul{ margin-top:10px; padding-left:20px; }
+li{
+  margin-bottom:8px;
+  padding-left:2px;
 }
+li::marker{ color:var(--ochre); }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .hero {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .hero{
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+    padding:40px 32px;
   }
-
-  .hero-left,
-  .hero-right {
-    justify-content: center;
+  .hero-right{ align-self:stretch; }
+  .contact-box{
+    border-left:none;
+    border-top:1px solid rgba(255,255,255,.25);
+    padding-left:0;
+    padding-top:16px;
+    margin-top:8px;
+    width:100%;
   }
+  .section{ padding:32px 28px; }
+}
 
-  .section {
-    width: 90%;
-  }
-
+@media (max-width:600px){
   .edu-block,
-  .exp-block {
-    flex-direction: row;
-  }
-}
-
-@media (max-width: 600px) {
-  .edu-block,
-  .exp-block {
-    flex-direction: column;
-  }
-
-  .logo-left {
-    margin-bottom: 10px;
-  }
+  .exp-block{ flex-direction:column; }
+  .logo-left{ margin-bottom:12px; }
+  .hero-center .name{ font-size:24px; }
 }
