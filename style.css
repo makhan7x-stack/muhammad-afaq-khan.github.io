@@ -1,23 +1,22 @@
 /* =============================================================
-   Muhammad Afaq Khan — Portfolio Stylesheet v4
-   "Executive" direction: one accent colour, maximum readability,
-   each .section behaves like its own full-height page.
+   Muhammad Afaq Khan — Portfolio Stylesheet v5
+   Back to the original card layout (hero + white section cards),
+   refined: centered content, generous spacing, high-contrast
+   readable colour palette. Single file — no HTML changes needed.
    ============================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --navy:#101b2d;         /* primary text + hero background */
-  --ivory:#fbfaf7;        /* main page background — soft, high-contrast */
-  --panel:#f2f1ea;        /* alternate section tint, still very light */
+  --navy:#101b2d;         /* primary text + hero background — deep, readable */
+  --ivory:#f6f5f0;        /* page background, soft and calm */
+  --panel:#ffffff;        /* card background — clean white for max contrast */
   --gold:#a9812f;         /* single accent colour, used sparingly */
-  --slate:#4d5560;        /* secondary/muted text — still readable */
-  --line:#e2e0d6;         /* hairline borders */
+  --slate:#4d5560;        /* secondary/muted text, still easily readable */
+  --line:#e4e1d4;         /* hairline borders */
 }
 
 *{ box-sizing:border-box; }
-
-html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
@@ -25,12 +24,12 @@ body{
   color:var(--navy);
   font-family:'Inter', -apple-system, sans-serif;
   font-size:17px;
-  line-height:1.7;
+  line-height:1.75;
   -webkit-font-smoothing:antialiased;
 }
 
-a{ color:var(--gold); text-decoration:none; }
-a:hover{ color:var(--navy); text-decoration:underline; }
+a{ color:var(--gold); text-decoration:none; border-bottom:1px solid transparent; }
+a:hover{ color:var(--navy); border-bottom-color:var(--navy); }
 
 h1,h2,h3,h4{
   font-family:'Fraunces', Georgia, serif;
@@ -39,203 +38,188 @@ h1,h2,h3,h4{
   margin:0;
 }
 
-@keyframes fadeIn{ from{opacity:0; transform:translateY(-8px);} to{opacity:1; transform:translateY(0);} }
-@keyframes slideUp{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
+@keyframes slideUp{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
 .fade-in{ animation:fadeIn .8s ease-out; }
-.slide-up{ animation:slideUp .6s ease-out both; }
+.slide-up{ animation:slideUp .8s ease-out both; }
+.slide-up:nth-of-type(2){ animation-delay:.05s; }
+.slide-up:nth-of-type(3){ animation-delay:.1s; }
+.slide-up:nth-of-type(4){ animation-delay:.15s; }
+.slide-up:nth-of-type(5){ animation-delay:.2s; }
 
-/* =========================================================
-   SIDE NAV — paste this markup once, right after <body>:
-
-   <nav class="page-nav">
-     <ul>
-       <li><a href="#summary">01 Summary</a></li>
-       <li><a href="#interests">02 Interests</a></li>
-       <li><a href="#education">03 Education</a></li>
-       <li><a href="#experience">04 Experience</a></li>
-       <li><a href="#skills">05 Skills</a></li>
-       <li><a href="#projects">06 Projects</a></li>
-       <li><a href="#certs">07 Certifications</a></li>
-       <li><a href="#contact">08 Contact</a></li>
-     </ul>
-   </nav>
-
-   Then add a matching id="summary" / id="interests" / etc.
-   to each of your existing <section class="section"> tags,
-   in the same order they already appear on the page.
-   Both edits are one-time — after that this file is all you touch.
-   ========================================================= */
-
-.page-nav{
-  position:fixed;
-  top:0; left:0; bottom:0;
-  width:216px;
-  background:var(--navy);
-  padding:40px 0;
-  z-index:200;
-  overflow-y:auto;
-}
-.page-nav ul{ list-style:none; margin:0; padding:0; }
-.page-nav li{ margin:0; }
-.page-nav a{
-  display:block;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:12.5px;
-  letter-spacing:.04em;
-  color:#9aa4b2;
-  padding:13px 28px;
-  border-left:2px solid transparent;
-  text-decoration:none;
-}
-.page-nav a:hover{ color:#fbfaf7; }
-
-/* This is the part that makes "selecting" a section visible:
-   when a section is the current URL fragment (#id), the matching
-   nav link — the one whose href matches — is highlighted via the
-   section itself glowing, since CSS can't select "the link that
-   points at the active target" directly. The active PAGE lights up: */
-.section:target{
-  animation:selectedPulse .9s ease-out;
-}
-@keyframes selectedPulse{
-  0%{ background:#efe6cd; }
-  100%{ background:inherit; }
-}
-.section:target .section-title::after{
-  content:"● viewing";
-  font-family:'IBM Plex Mono', monospace;
-  font-size:11px;
-  color:var(--gold);
-  margin-left:10px;
-  letter-spacing:.04em;
-}
-
-/* Body content sits to the right of the fixed side nav */
-body > .hero,
-body > .section{
-  margin-left:216px;
-}
-
-/* =========================================================
-   PAGE-LIKE SECTIONS
-   Each .section fills the viewport height and snaps into place —
-   scrolling feels like moving through discrete pages, and clicking
-   a nav item jumps straight to its "page".
-   ========================================================= */
-html{
-  scroll-snap-type:y proximity;
-}
-.hero,
-.section{
-  scroll-snap-align:start;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-/* ---------- Hero ---------- */
+/* ---------- Hero — centered, generous breathing room ---------- */
 .hero{
-  padding:0 64px;
+  max-width:1000px;
+  margin:56px auto 40px;
+  padding:56px 64px;
   background:var(--navy);
-  color:var(--ivory);
-  flex-direction:row;
+  color:#fff;
+  display:flex;
   align-items:center;
   gap:44px;
+  border-radius:10px;
+  box-shadow:0 20px 40px rgba(16,27,45,0.12);
 }
-.hero-left{ flex-shrink:0; }
+.hero-left{ display:flex; align-items:center; flex-shrink:0; }
 .profile-img{
-  width:150px; height:150px; border-radius:50%;
-  object-fit:cover; border:3px solid var(--gold);
+  width:150px; height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--gold);
 }
+.hero-center{ flex:1; }
 .hero-center .name{
-  font-size:clamp(32px,4.5vw,50px); font-weight:700; color:var(--ivory);
+  font-size:clamp(30px,4.4vw,44px);
+  font-weight:700;
+  color:#fff;
+  line-height:1.1;
 }
 .hero-center .title{
-  font-family:'IBM Plex Mono', monospace; font-size:13.5px;
-  color:var(--gold); text-transform:uppercase; letter-spacing:.04em;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:#e7c877;
   margin-top:16px;
+  line-height:1.6;
 }
 .hero-center .degree{
-  font-size:15px; color:#c3c9d1; margin-top:10px;
+  font-size:15px;
+  color:#c3c9d1;
+  margin-top:14px;
+  font-family:'Inter', sans-serif;
 }
-.hero-right{ flex-shrink:0; }
-.contact-box p{ margin:6px 0; font-size:13px; color:#c3c9d1; font-family:'IBM Plex Mono', monospace; }
-.contact-box strong{ color:var(--ivory); margin-right:6px; }
-.contact-box a{ color:var(--gold); }
+.hero-right{ display:flex; align-items:center; flex-shrink:0; }
+.contact-box{
+  font-family:'IBM Plex Mono', monospace;
+  border-left:1px solid rgba(255,255,255,.2);
+  padding-left:28px;
+}
+.contact-box p{ margin:8px 0; font-size:13px; color:#c3c9d1; }
+.contact-box strong{ color:#fff; font-weight:500; margin-right:6px; }
+.contact-box a{ color:#e7c877; border-bottom-color:transparent; }
+.contact-box a:hover{ color:#fff; border-bottom-color:#fff; }
 
-/* ---------- Section shells — alternate tint reinforces the "each is its own page" read ---------- */
+/* ---------- Section cards — centered, roomy, clearly separated ---------- */
 .section{
-  padding:64px;
-  background:var(--ivory);
-  border-top:1px solid var(--line);
+  max-width:1000px;
+  margin:32px auto;
+  background:var(--panel);
+  padding:52px 64px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  box-shadow:0 6px 20px rgba(16,27,45,0.05);
 }
-.section:nth-of-type(even){ background:var(--panel); }
 
 .section-title{
-  font-size:clamp(24px,3vw,32px); font-weight:700;
-  display:flex; align-items:center; gap:14px;
-  margin-bottom:30px;
-  border-bottom:none; padding-bottom:0;
+  margin:0 0 30px 0;
+  font-size:clamp(22px,2.6vw,27px);
+  font-weight:700;
+  color:var(--navy);
+  border-bottom:2px solid var(--line);
+  padding-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 .section-title::before{
-  content:""; width:26px; height:2px; background:var(--gold); display:inline-block;
+  content:"";
+  width:26px; height:3px;
+  background:var(--gold);
+  display:inline-block;
+  flex-shrink:0;
 }
 
 .subheading{
-  font-family:'IBM Plex Mono', monospace; font-size:13px;
-  text-transform:uppercase; letter-spacing:.06em; color:var(--navy);
-  opacity:.7; margin-top:24px; margin-bottom:12px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--gold);
+  margin-top:28px;
+  margin-bottom:14px;
 }
 
-.section p, .section li{ font-size:16px; color:#262e39; max-width:760px; }
+.section p, .section li{
+  font-size:16px;
+  line-height:1.8;
+  color:#2b3340;
+  max-width:800px;
+}
 
 /* ---------- Logos / experience & education blocks ---------- */
-.logo-left{ width:42px; height:auto; margin-right:20px; filter:grayscale(100%) contrast(1.15); opacity:.8; }
+.logo-left{
+  width:44px;
+  height:auto;
+  margin-right:22px;
+  filter:grayscale(100%) contrast(1.15);
+  opacity:.82;
+}
 .edu-block, .exp-block{
-  display:flex; align-items:flex-start;
-  padding:24px 0; border-top:1px solid var(--line);
+  display:flex;
+  align-items:flex-start;
+  padding:28px 0;
+  border-top:1px solid var(--line);
 }
 .edu-block:first-of-type, .exp-block:first-of-type{ border-top:none; padding-top:0; }
 .edu-text, .exp-text{ flex:1; }
-.edu-text h3, .exp-text h3{ font-size:19px; font-weight:700; margin-bottom:8px; }
+.edu-text h3, .exp-text h3{
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:10px;
+  line-height:1.4;
+}
+.edu-text ul, .exp-text ul{ margin-top:14px; }
 
 /* ---------- Projects ---------- */
-.proj-block{ padding:22px 0; border-top:1px solid var(--line); max-width:760px; }
+.proj-block{
+  padding:26px 0;
+  border-top:1px solid var(--line);
+}
 .proj-block:first-of-type{ border-top:none; padding-top:0; }
-.proj-block h3{ font-size:17.5px; font-weight:700; margin-bottom:6px; }
+.proj-block h3{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:8px;
+}
 .proj-block p strong{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px;
-  color:var(--gold); font-weight:600; letter-spacing:.03em;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--gold);
+  font-weight:600;
+  letter-spacing:.03em;
 }
 
 /* ---------- Separator ---------- */
-.separator{ border:none; border-top:1px solid var(--line); margin:20px 0; }
+.separator{ border:none; border-top:1px solid var(--line); margin:22px 0; }
 
 /* ---------- Hover cards ---------- */
-.hover-card{ transition:padding-left .18s ease, border-color .18s ease; }
-.hover-card:hover{ padding-left:14px; border-left:3px solid var(--gold); }
+.hover-card{ transition:transform .2s ease, box-shadow .2s ease; }
+.hover-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(16,27,45,0.09);
+}
 
 /* ---------- Lists ---------- */
-ul{ margin-top:10px; padding-left:20px; }
-li{ margin-bottom:9px; padding-left:2px; }
+ul{ margin-top:12px; padding-left:22px; }
+li{ margin-bottom:10px; padding-left:2px; }
 li::marker{ color:var(--gold); }
 
-/* ---------- Responsive: side nav collapses to a top bar ---------- */
+/* ---------- Responsive ---------- */
 @media (max-width:900px){
-  .page-nav{
-    position:sticky; top:0; left:0; bottom:auto;
-    width:100%; height:auto; padding:0;
-    display:flex; overflow-x:auto;
+  .hero{ flex-direction:column; align-items:flex-start; padding:44px 36px; margin:32px 20px; }
+  .hero-right{ align-self:stretch; }
+  .contact-box{
+    border-left:none; border-top:1px solid rgba(255,255,255,.2);
+    padding-left:0; padding-top:20px; margin-top:16px; width:100%;
   }
-  .page-nav a{ padding:14px 18px; white-space:nowrap; border-left:none; border-bottom:2px solid transparent; }
-  body > .hero, body > .section{ margin-left:0; }
-  .hero{ flex-direction:column; align-items:flex-start; padding:48px 32px; }
-  .section{ padding:48px 32px; min-height:auto; }
-  html{ scroll-snap-type:none; }
+  .section{ padding:36px 32px; margin:24px 20px; }
 }
 
 @media (max-width:600px){
   .edu-block, .exp-block{ flex-direction:column; }
-  .logo-left{ margin-bottom:12px; }
+  .logo-left{ margin-bottom:14px; }
+  .hero-center .name{ font-size:26px; }
+  .section{ padding:28px 22px; }
 }
