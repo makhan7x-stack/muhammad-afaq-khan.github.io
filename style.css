@@ -1,25 +1,23 @@
 /* =============================================================
-   Muhammad Afaq Khan — Portfolio Stylesheet v2
-   "Engineering editorial" direction — bold, framed, high-contrast.
-   Drop straight in place of style.css. No HTML changes needed.
+   Muhammad Afaq Khan — Portfolio Stylesheet v3 (multi-page)
+   Shared across index.html / experience.html / projects.html /
+   credentials.html / contact.html
    ============================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --ink:#12241f;          /* deep forest-ink, primary text */
-  --paper:#f6f4ec;        /* warm bone-white background */
-  --panel:#ffffff;        /* card background */
-  --rust:#b6491f;         /* burnt-rust accent, primary */
-  --gold:#c9962c;         /* muted gold, secondary accent */
-  --forest:#2f4a3c;       /* deep green, tertiary accent */
-  --line:#d8d2c0;         /* hairline border */
-  --muted:#5c5f56;
+  --ink:#161f1c;          /* near-black warm charcoal, primary text */
+  --paper:#fbfaf6;        /* clean, high-contrast off-white background */
+  --panel:#ffffff;
+  --rust:#a8461f;         /* accent 1 — CTAs, active nav, highlights */
+  --gold:#b8862a;         /* accent 2 — secondary highlights */
+  --forest:#2c4536;       /* accent 3 — labels, section markers */
+  --line:#e1ded2;         /* hairline borders */
+  --muted:#5b5f57;        /* secondary text, fully readable on paper */
 }
 
 *{ box-sizing:border-box; }
-
-html{ background:var(--ink); }
 
 body{
   margin:0;
@@ -27,17 +25,11 @@ body{
   color:var(--ink);
   font-family:'Inter', -apple-system, sans-serif;
   font-size:16.5px;
-  line-height:1.65;
-  /* the framed-page effect: a thick ink border around the whole document */
-  border:10px solid var(--ink);
-  min-height:100vh;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
 }
 
-a{
-  color:var(--rust);
-  text-decoration:none;
-  border-bottom:1px solid currentColor;
-}
+a{ color:var(--rust); text-decoration:none; }
 a:hover{ color:var(--forest); }
 
 h1,h2,h3,h4{
@@ -47,204 +39,176 @@ h1,h2,h3,h4{
   margin:0;
 }
 
+.wrap{ max-width:920px; margin:0 auto; padding:0 32px; }
+
 @keyframes fadeIn{ from{opacity:0; transform:translateY(-8px);} to{opacity:1; transform:translateY(0);} }
-@keyframes slideUp{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
-.fade-in{ animation:fadeIn .8s ease-out; }
-.slide-up{ animation:slideUp .7s ease-out both; }
+@keyframes slideUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+.fade-in{ animation:fadeIn .7s ease-out; }
+.slide-up{ animation:slideUp .6s ease-out both; }
 .slide-up:nth-of-type(2){ animation-delay:.05s; }
 .slide-up:nth-of-type(3){ animation-delay:.1s; }
 .slide-up:nth-of-type(4){ animation-delay:.15s; }
-.slide-up:nth-of-type(5){ animation-delay:.2s; }
 
-/* ---------- Hero ---------- */
-.hero{
-  width:auto;
-  max-width:1040px;
-  margin:56px auto 40px;
-  padding:0 0 44px;
-  background:transparent;
-  color:var(--ink);
-  display:flex;
-  align-items:flex-end;
-  gap:40px;
-  border-radius:0;
-  border-bottom:3px solid var(--ink);
-  box-shadow:none;
-  position:relative;
-}
-/* running index label, like a plate number on a technical drawing */
-.hero::before{
-  content:"PORTFOLIO / 2026";
-  position:absolute;
-  top:-34px; left:0;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:11.5px;
-  letter-spacing:.18em;
-  color:var(--muted);
-}
-
-.hero-left{ display:flex; align-items:flex-end; flex-shrink:0; }
-.profile-img{
-  width:150px; height:150px;
-  border-radius:0;
-  object-fit:cover;
-  border:3px solid var(--ink);
-  filter:grayscale(60%) contrast(1.05);
-}
-
-.hero-center{ flex:1; }
-.hero-center .name{
-  font-size:clamp(34px,5vw,52px);
-  font-weight:900;
-  color:var(--ink);
-  margin:0;
-  line-height:1.02;
-}
-.hero-center .title{
-  font-family:'IBM Plex Mono', monospace;
-  font-size:13.5px;
-  font-weight:500;
-  letter-spacing:.03em;
-  color:var(--rust);
-  margin:14px 0 0;
-  text-transform:uppercase;
-}
-.hero-center .degree{
-  font-size:14.5px;
-  color:var(--muted);
-  margin:8px 0 0;
-  font-family:'Inter', sans-serif;
-  font-style:normal;
-}
-
-.hero-right{ display:flex; align-items:flex-end; flex-shrink:0; }
-.contact-box{
-  font-family:'IBM Plex Mono', monospace;
-  border-left:2px solid var(--ink);
-  padding-left:20px;
-  text-align:left;
-}
-.contact-box p{ margin:5px 0; font-size:12px; color:var(--muted); }
-.contact-box strong{ color:var(--ink); font-weight:600; display:block; font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
-.contact-box p:first-child strong{ margin-top:0; }
-.contact-box a{ color:var(--rust); border-bottom-color:transparent; }
-.contact-box a:hover{ border-bottom-color:var(--rust); }
-
-/* ---------- Section shells ---------- */
-.section{
-  width:auto;
-  max-width:1040px;
-  margin:0 auto;
-  background:transparent;
-  padding:40px 0;
-  border-radius:0;
-  box-shadow:none;
+/* ---------- Top navigation ---------- */
+.site-nav{
+  position:sticky; top:0; z-index:100;
+  background:rgba(251,250,246,0.94);
+  backdrop-filter:blur(6px);
   border-bottom:1px solid var(--line);
 }
+.site-nav .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px; max-width:1000px;
+}
+.site-nav .brand{
+  font-family:'Fraunces', serif;
+  font-weight:700; font-size:17px;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+}
+.site-nav .brand span{ color:var(--rust); }
+.site-nav ul{
+  list-style:none; display:flex; gap:8px; margin:0; padding:0;
+}
+.site-nav a{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--muted);
+  padding:8px 14px;
+  border-radius:3px;
+  display:inline-block;
+  position:relative;
+}
+.site-nav a:hover{ color:var(--ink); }
+.site-nav a.active{
+  color:var(--ink);
+  font-weight:600;
+}
+.site-nav a.active::after{
+  content:"";
+  position:absolute;
+  left:14px; right:14px; bottom:2px;
+  height:2px;
+  background:var(--rust);
+}
+.site-nav a.cta{
+  background:var(--ink); color:var(--paper);
+  padding:8px 16px;
+}
+.site-nav a.cta:hover{ background:var(--rust); color:var(--paper); }
+
+@media (max-width:760px){
+  .site-nav ul{ gap:2px; }
+  .site-nav a{ padding:8px 9px; font-size:11px; }
+}
+
+/* ---------- Page header (per-section title strip) ---------- */
+.page-header{
+  padding:64px 0 40px;
+  border-bottom:1px solid var(--line);
+}
+.page-header .eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--rust); margin-bottom:14px;
+}
+.page-header h1{
+  font-size:clamp(30px,4.2vw,44px);
+  font-weight:700;
+}
+.page-header p{
+  margin-top:14px; max-width:620px;
+  color:var(--muted); font-size:16.5px;
+}
+
+/* ---------- Hero (home page only) ---------- */
+.hero{
+  padding:16px 0 0;
+  display:flex; align-items:center; gap:36px;
+}
+.hero-left{ flex-shrink:0; }
+.profile-img{
+  width:128px; height:128px; border-radius:50%;
+  object-fit:cover; border:3px solid var(--ink);
+  filter:grayscale(35%);
+}
+.hero-center .name{
+  font-size:clamp(30px,4.5vw,46px); font-weight:800; line-height:1.05;
+}
+.hero-center .title{
+  font-family:'IBM Plex Mono', monospace; font-size:13px;
+  color:var(--rust); text-transform:uppercase; letter-spacing:.03em;
+  margin-top:12px;
+}
+.hero-center .degree{
+  font-size:14.5px; color:var(--muted); margin-top:8px;
+}
+
+/* ---------- Contact box (home + contact page) ---------- */
+.contact-box{
+  font-family:'IBM Plex Mono', monospace;
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;
+}
+.contact-box p{ margin:0; font-size:12.5px; }
+.contact-box a{
+  border:1px solid var(--line); padding:8px 14px; border-radius:3px;
+  color:var(--ink); background:var(--panel);
+}
+.contact-box a:hover{ border-color:var(--rust); color:var(--rust); }
+
+/* ---------- Section shells ---------- */
+.section{ padding:48px 0; border-bottom:1px solid var(--line); }
 .section:last-of-type{ border-bottom:none; }
 
 .section-title{
-  margin:0 0 26px 0;
-  font-size:clamp(22px,2.6vw,28px);
-  font-weight:700;
-  color:var(--ink);
-  border-bottom:none;
-  padding-bottom:0;
-  display:flex;
-  align-items:baseline;
-  gap:14px;
+  font-size:clamp(20px,2.4vw,26px); font-weight:700;
+  display:flex; align-items:baseline; gap:12px;
+  margin-bottom:26px;
 }
 .section-title::before{
-  content:"§";
-  font-family:'IBM Plex Mono', monospace;
-  font-size:15px;
-  font-weight:500;
-  color:var(--rust);
+  content:"§"; font-family:'IBM Plex Mono', monospace;
+  font-size:14px; color:var(--rust);
 }
-
 .subheading{
-  font-size:14px;
-  font-weight:600;
-  margin-top:24px;
-  margin-bottom:10px;
-  color:var(--forest);
-  font-family:'IBM Plex Mono', monospace;
-  text-transform:uppercase;
-  letter-spacing:.06em;
+  font-family:'IBM Plex Mono', monospace; font-size:13px;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--forest);
+  margin-top:22px; margin-bottom:10px;
 }
+.section p, .section li{ font-size:15.5px; color:#2c2f29; }
 
-.section p,
-.section li{
-  font-size:15.5px;
-  line-height:1.7;
-  color:#2b2e29;
+/* ---------- Chips (research interests / focus areas) ---------- */
+.chips{ display:flex; flex-wrap:wrap; gap:9px; }
+.chip{
+  font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+  padding:8px 14px; border:1px solid var(--line); border-radius:3px;
+  background:var(--panel); color:var(--ink);
 }
 
 /* ---------- Logos / experience & education blocks ---------- */
 .logo-left{
-  width:40px;
-  height:auto;
-  margin-right:20px;
-  filter:grayscale(100%) contrast(1.2);
-  opacity:.8;
+  width:40px; height:auto; margin-right:20px;
+  filter:grayscale(100%) contrast(1.2); opacity:.8;
 }
-
-.edu-block,
-.exp-block{
-  display:flex;
-  align-items:flex-start;
-  margin-bottom:0;
-  padding:24px 0;
-  border-top:1px solid var(--line);
-  position:relative;
+.edu-block, .exp-block{
+  display:flex; align-items:flex-start;
+  padding:26px 0; border-top:1px solid var(--line);
 }
-.edu-block:first-of-type,
-.exp-block:first-of-type{ border-top:none; padding-top:0; }
-
-.edu-text,
-.exp-text{ flex:1; }
-
-.edu-text h3,
-.exp-text h3{
-  font-size:18.5px;
-  font-weight:700;
-  margin-bottom:8px;
-  line-height:1.3;
-}
-
+.edu-block:first-of-type, .exp-block:first-of-type{ border-top:none; padding-top:0; }
+.edu-text, .exp-text{ flex:1; }
+.edu-text h3, .exp-text h3{ font-size:18.5px; font-weight:700; margin-bottom:8px; }
 .edu-text ul, .exp-text ul{ margin-top:12px; }
 
 /* ---------- Projects ---------- */
-.proj-block{
-  margin-bottom:0;
-  padding:22px 0;
-  background:transparent;
-  border-top:1px solid var(--line);
-  border-left:none;
-  border-radius:0;
-}
+.proj-block{ padding:24px 0; border-top:1px solid var(--line); }
 .proj-block:first-of-type{ border-top:none; padding-top:0; }
 .proj-block h3{
-  font-size:17px;
-  font-weight:700;
-  margin-bottom:4px;
-  display:flex;
-  align-items:center;
-  gap:10px;
+  font-size:17.5px; font-weight:700; margin-bottom:6px;
+  display:flex; align-items:center; gap:10px;
 }
-.proj-block h3::before{
-  content:"";
-  width:8px; height:8px;
-  background:var(--gold);
-  display:inline-block;
-  flex-shrink:0;
-}
+.proj-block h3::before{ content:""; width:8px; height:8px; background:var(--gold); flex-shrink:0; }
 .proj-block p strong{
-  font-family:'IBM Plex Mono', monospace;
-  font-size:11.5px;
-  color:var(--forest);
-  font-weight:600;
-  letter-spacing:.03em;
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+  color:var(--forest); font-weight:600; letter-spacing:.03em;
 }
 
 /* ---------- Separator ---------- */
@@ -252,30 +216,45 @@ h1,h2,h3,h4{
 
 /* ---------- Hover cards ---------- */
 .hover-card{ transition:padding-left .18s ease, border-color .18s ease; }
-.hover-card:hover{
-  padding-left:14px;
-  border-left:3px solid var(--rust);
-}
+.hover-card:hover{ padding-left:14px; border-left:3px solid var(--rust); }
 
 /* ---------- Lists ---------- */
 ul{ margin-top:10px; padding-left:20px; }
 li{ margin-bottom:9px; padding-left:2px; }
 li::marker{ color:var(--rust); font-family:'IBM Plex Mono', monospace; }
 
-/* ---------- Responsive ---------- */
-@media (max-width:900px){
-  body{ border-width:6px; }
-  .hero{ flex-direction:column; align-items:flex-start; text-align:left; }
-  .hero-right{ align-self:stretch; }
-  .contact-box{
-    border-left:none; border-top:2px solid var(--ink);
-    padding-left:0; padding-top:16px; margin-top:12px; width:100%;
-  }
+/* ---------- Two-column credential list ---------- */
+.cred-cols{ display:grid; grid-template-columns:1fr 1fr; gap:44px; }
+.cred-cols ul{ list-style:none; margin:0; padding:0; }
+.cred-cols li{
+  padding:11px 0; border-bottom:1px solid var(--line);
+  display:flex; justify-content:space-between; gap:12px; font-size:15px;
+}
+.cred-cols li span.mono{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); }
+@media (max-width:700px){ .cred-cols{ grid-template-columns:1fr; } }
+
+/* ---------- Contact / CTA page ---------- */
+.cta-panel{
+  background:var(--ink); color:var(--paper);
+  border-radius:6px; padding:56px 48px; text-align:left;
+}
+.cta-panel h2{ color:var(--paper); font-size:clamp(26px,3.6vw,36px); max-width:560px; }
+.cta-panel p{ color:#cfd6cd; max-width:520px; margin-top:14px; }
+.cta-panel .contact-box a{
+  background:transparent; border-color:rgba(255,255,255,.3); color:var(--paper);
+}
+.cta-panel .contact-box a:hover{ border-color:var(--gold); color:var(--gold); }
+
+/* ---------- Footer ---------- */
+.site-footer{
+  padding:32px 0 48px;
+  font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
 }
 
-@media (max-width:600px){
+/* ---------- Responsive ---------- */
+@media (max-width:760px){
+  .hero{ flex-direction:column; align-items:flex-start; }
   .edu-block, .exp-block{ flex-direction:column; }
   .logo-left{ margin-bottom:12px; }
-  .hero-center .name{ font-size:28px; }
-  body{ border-width:4px; }
 }
