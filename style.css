@@ -1,20 +1,22 @@
 /* =============================================================
-   Muhammad Afaq Khan — Portfolio Stylesheet v6
-   The framed "engineering editorial" design, brought back —
-   tuned for stronger text contrast and a proper skills layout.
-   Drop straight in place of style.css. No HTML changes needed.
+   Muhammad Afaq Khan — Portfolio Stylesheet v7
+   Same framed editorial direction — logos now shown in full
+   colour on a clean white chip (so TNO/CNRS/TalTech/ULiège are
+   instantly recognisable), and each section is its own clearly
+   bounded panel. Drop straight over style.css. No HTML changes.
    ============================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --ink:#14201b;          /* primary text — deep, high-contrast */
-  --paper:#f7f5ee;        /* warm bone-white background */
-  --rust:#a8441c;         /* accent 1 — headings, CTAs, key marks */
-  --gold:#b8862a;         /* accent 2 — secondary highlights */
-  --forest:#2c4536;       /* accent 3 — labels, subheadings */
+  --ink:#14201b;          /* primary text — high contrast */
+  --paper:#efeade;        /* warm bone background, slightly deeper than white so white panels lift off it */
+  --panel:#ffffff;        /* section panel / logo-chip background */
+  --rust:#a8441c;         /* accent 1 */
+  --gold:#b8862a;         /* accent 2 */
+  --forest:#2c4536;       /* accent 3 */
   --line:#dcd7c7;         /* hairline border */
-  --muted:#43483f;        /* secondary text — dark enough to stay readable */
+  --muted:#43483f;        /* secondary text, high enough contrast to read easily */
 }
 
 *{ box-sizing:border-box; }
@@ -55,79 +57,84 @@ h1,h2,h3,h4{
 /* ---------- Hero ---------- */
 .hero{
   max-width:1040px;
-  margin:56px auto 40px;
-  padding:0 0 44px;
-  background:transparent;
-  color:var(--ink);
+  margin:56px auto 44px;
+  padding:48px;
+  background:var(--ink);
+  color:var(--panel);
   display:flex;
-  align-items:flex-end;
+  align-items:center;
   gap:40px;
-  border-bottom:3px solid var(--ink);
+  border-radius:8px;
   position:relative;
 }
 .hero::before{
   content:"PORTFOLIO / 2026";
   position:absolute;
-  top:-34px; left:0;
+  top:-30px; left:4px;
   font-family:'IBM Plex Mono', monospace;
   font-size:11.5px;
   letter-spacing:.18em;
   color:var(--muted);
 }
 
-.hero-left{ display:flex; align-items:flex-end; flex-shrink:0; }
+.hero-left{ display:flex; align-items:center; flex-shrink:0; }
 .profile-img{
-  width:150px; height:150px;
+  width:144px; height:144px;
+  border-radius:50%;
   object-fit:cover;
-  border:3px solid var(--ink);
-  filter:grayscale(50%) contrast(1.05);
+  border:3px solid var(--gold);
 }
 
 .hero-center{ flex:1; }
 .hero-center .name{
-  font-size:clamp(34px,5vw,52px);
+  font-size:clamp(30px,4.6vw,46px);
   font-weight:800;
-  color:var(--ink);
-  line-height:1.05;
+  color:#fff;
+  line-height:1.08;
 }
 .hero-center .title{
   font-family:'IBM Plex Mono', monospace;
-  font-size:13.5px;
+  font-size:13px;
   font-weight:500;
   letter-spacing:.03em;
-  color:var(--rust);
+  color:#e7c877;
   margin:14px 0 0;
   text-transform:uppercase;
+  line-height:1.6;
 }
 .hero-center .degree{
-  font-size:15px;
-  color:var(--muted);
-  margin:9px 0 0;
+  font-size:14.5px;
+  color:#c7cbc0;
+  margin:10px 0 0;
 }
 
-.hero-right{ display:flex; align-items:flex-end; flex-shrink:0; }
+.hero-right{ display:flex; align-items:center; flex-shrink:0; }
 .contact-box{
   font-family:'IBM Plex Mono', monospace;
-  border-left:2px solid var(--ink);
-  padding-left:20px;
+  border-left:1px solid rgba(255,255,255,.2);
+  padding-left:24px;
 }
-.contact-box p{ margin:6px 0; font-size:12.5px; color:var(--muted); }
-.contact-box strong{
-  color:var(--ink); font-weight:600; display:block;
-  font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-top:9px;
-}
-.contact-box p:first-child strong{ margin-top:0; }
-.contact-box a{ color:var(--rust); border-bottom-color:transparent; }
-.contact-box a:hover{ border-bottom-color:var(--rust); }
+.contact-box p{ margin:7px 0; font-size:12.5px; color:#c7cbc0; }
+.contact-box strong{ color:#fff; font-weight:500; margin-right:6px; }
+.contact-box a{ color:#e7c877; border-bottom-color:transparent; }
+.contact-box a:hover{ color:#fff; border-bottom-color:#fff; }
 
-/* ---------- Section shells ---------- */
+/* =========================================================
+   SECTIONS — each one is now its own clearly bounded white
+   panel with a numbered eyebrow, not just a border-bottom line.
+   This is the "each section clearly visible" fix.
+   ========================================================= */
 .section{
   max-width:1040px;
-  margin:0 auto;
-  padding:44px 0;
-  border-bottom:1px solid var(--line);
+  margin:28px auto;
+  padding:48px 56px;
+  background:var(--panel);
+  border-radius:8px;
+  border:1px solid var(--line);
+  box-shadow:0 4px 16px rgba(20,32,27,0.05);
+  counter-increment:sec;
 }
-.section:last-of-type{ border-bottom:none; }
+body{ counter-reset:sec; }
 
 .section-title{
   margin:0 0 28px 0;
@@ -137,11 +144,13 @@ h1,h2,h3,h4{
   display:flex;
   align-items:baseline;
   gap:14px;
+  padding-bottom:20px;
+  border-bottom:2px solid var(--paper);
 }
 .section-title::before{
-  content:"§";
+  content:"0" counter(sec) " —";
   font-family:'IBM Plex Mono', monospace;
-  font-size:15px;
+  font-size:14px;
   font-weight:500;
   color:var(--rust);
 }
@@ -163,43 +172,46 @@ h1,h2,h3,h4{
   color:#242a20;
 }
 
-/* =========================================================
-   SKILLS — every ul immediately after a .subheading (this is
-   your Technical Skills & Core Competencies block) renders as
-   a clean tag grid instead of a plain bullet list.
-   ========================================================= */
+/* ---------- Skills as tag grid (unchanged approach, kept) ---------- */
 .subheading + ul{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:14px;
-  padding-left:0;
-  list-style:none;
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-top:14px; padding-left:0; list-style:none;
 }
 .subheading + ul li{
   font-family:'IBM Plex Mono', monospace;
-  font-size:13px;
-  color:var(--ink);
-  background:#ffffff;
+  font-size:13px; color:var(--ink);
+  background:var(--paper);
   border:1px solid var(--line);
   border-left:3px solid var(--forest);
-  padding:9px 16px;
-  margin:0;
+  padding:9px 16px; margin:0;
   border-radius:0 3px 3px 0;
 }
-.subheading + ul li::marker{ content:none; }
 
-/* ---------- Logos / experience & education blocks ---------- */
+/* =========================================================
+   LOGOS — shown in full original colour, lifted onto a clean
+   white chip with padding + border so they read clearly no
+   matter what colour the institute's logo actually is.
+   ========================================================= */
 .logo-left{
-  width:40px; height:auto; margin-right:20px;
-  filter:grayscale(100%) contrast(1.2); opacity:.82;
+  width:auto;
+  height:40px;
+  max-width:80px;
+  object-fit:contain;
+  margin-right:22px;
+  padding:10px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:6px;
+  box-shadow:0 2px 6px rgba(20,32,27,0.06);
+  flex-shrink:0;
+  /* no filter — full original colour for instant institute recognition */
 }
 
 .edu-block, .exp-block{
   display:flex;
   align-items:flex-start;
   padding:26px 0;
-  border-top:1px solid var(--line);
+  border-top:1px solid var(--paper);
 }
 .edu-block:first-of-type, .exp-block:first-of-type{ border-top:none; padding-top:0; }
 .edu-text, .exp-text{ flex:1; }
@@ -209,7 +221,7 @@ h1,h2,h3,h4{
 .edu-text ul, .exp-text ul{ margin-top:12px; }
 
 /* ---------- Projects ---------- */
-.proj-block{ padding:24px 0; border-top:1px solid var(--line); }
+.proj-block{ padding:24px 0; border-top:1px solid var(--paper); }
 .proj-block:first-of-type{ border-top:none; padding-top:0; }
 .proj-block h3{
   font-size:17px; font-weight:700; margin-bottom:6px;
@@ -222,11 +234,14 @@ h1,h2,h3,h4{
 }
 
 /* ---------- Separator ---------- */
-.separator{ border:none; border-top:1px solid var(--line); margin:22px 0; }
+.separator{ border:none; border-top:1px solid var(--paper); margin:20px 0; }
 
 /* ---------- Hover cards ---------- */
-.hover-card{ transition:padding-left .18s ease, border-color .18s ease; }
-.hover-card:hover{ padding-left:14px; border-left:3px solid var(--rust); }
+.hover-card{ transition:transform .18s ease, box-shadow .18s ease; }
+.hover-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(20,32,27,0.08);
+}
 
 /* ---------- Lists (general, non-skills) ---------- */
 ul{ margin-top:12px; padding-left:20px; }
@@ -236,17 +251,18 @@ li::marker{ color:var(--rust); font-family:'IBM Plex Mono', monospace; }
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
   body{ border-width:6px; }
-  .hero{ flex-direction:column; align-items:flex-start; }
+  .hero{ flex-direction:column; align-items:flex-start; margin:32px 16px; padding:36px 28px; }
   .hero-right{ align-self:stretch; }
   .contact-box{
-    border-left:none; border-top:2px solid var(--ink);
-    padding-left:0; padding-top:16px; margin-top:12px; width:100%;
+    border-left:none; border-top:1px solid rgba(255,255,255,.2);
+    padding-left:0; padding-top:18px; margin-top:14px; width:100%;
   }
+  .section{ margin:20px 16px; padding:32px 28px; }
 }
 
 @media (max-width:600px){
   .edu-block, .exp-block{ flex-direction:column; }
-  .logo-left{ margin-bottom:12px; }
-  .hero-center .name{ font-size:28px; }
+  .logo-left{ margin-bottom:14px; }
+  .hero-center .name{ font-size:26px; }
   body{ border-width:4px; }
 }
