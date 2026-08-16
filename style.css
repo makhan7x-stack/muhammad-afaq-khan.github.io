@@ -1,22 +1,20 @@
 /* =============================================================
-   Muhammad Afaq Khan — Portfolio Stylesheet v7
-   Same framed editorial direction — logos now shown in full
-   colour on a clean white chip (so TNO/CNRS/TalTech/ULiège are
-   instantly recognisable), and each section is its own clearly
-   bounded panel. Drop straight over style.css. No HTML changes.
+   Muhammad Afaq Khan — Portfolio Stylesheet v8
+   Numbers removed, logos larger and crisper, palette shifted to
+   a classic navy + gold professional combination for maximum
+   polish. Drop straight over style.css. No HTML changes needed.
    ============================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --ink:#14201b;          /* primary text — high contrast */
-  --paper:#efeade;        /* warm bone background, slightly deeper than white so white panels lift off it */
-  --panel:#ffffff;        /* section panel / logo-chip background */
-  --rust:#a8441c;         /* accent 1 */
-  --gold:#b8862a;         /* accent 2 */
-  --forest:#2c4536;       /* accent 3 */
-  --line:#dcd7c7;         /* hairline border */
-  --muted:#43483f;        /* secondary text, high enough contrast to read easily */
+  --ink:#101b2b;           /* true navy-charcoal — reads as "professional" everywhere */
+  --paper:#f4f2ea;         /* warm ivory background */
+  --panel:#ffffff;         /* section panel / logo-chip background */
+  --gold:#a9812f;          /* single primary accent */
+  --teal:#1f4a44;          /* secondary accent — subheadings, borders, markers */
+  --line:#e1ddd0;          /* hairline border */
+  --muted:#4a5160;         /* secondary text — high contrast, navy-toned */
 }
 
 *{ box-sizing:border-box; }
@@ -35,8 +33,8 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-a{ color:var(--rust); text-decoration:none; border-bottom:1px solid currentColor; }
-a:hover{ color:var(--forest); }
+a{ color:var(--gold); text-decoration:none; border-bottom:1px solid currentColor; }
+a:hover{ color:var(--teal); }
 
 h1,h2,h3,h4{
   font-family:'Fraunces', Georgia, serif;
@@ -74,7 +72,7 @@ h1,h2,h3,h4{
   font-family:'IBM Plex Mono', monospace;
   font-size:11.5px;
   letter-spacing:.18em;
-  color:var(--muted);
+  color:#8b92a0;
 }
 
 .hero-left{ display:flex; align-items:center; flex-shrink:0; }
@@ -104,7 +102,7 @@ h1,h2,h3,h4{
 }
 .hero-center .degree{
   font-size:14.5px;
-  color:#c7cbc0;
+  color:#c3c8d3;
   margin:10px 0 0;
 }
 
@@ -114,16 +112,12 @@ h1,h2,h3,h4{
   border-left:1px solid rgba(255,255,255,.2);
   padding-left:24px;
 }
-.contact-box p{ margin:7px 0; font-size:12.5px; color:#c7cbc0; }
+.contact-box p{ margin:7px 0; font-size:12.5px; color:#c3c8d3; }
 .contact-box strong{ color:#fff; font-weight:500; margin-right:6px; }
 .contact-box a{ color:#e7c877; border-bottom-color:transparent; }
 .contact-box a:hover{ color:#fff; border-bottom-color:#fff; }
 
-/* =========================================================
-   SECTIONS — each one is now its own clearly bounded white
-   panel with a numbered eyebrow, not just a border-bottom line.
-   This is the "each section clearly visible" fix.
-   ========================================================= */
+/* ---------- Sections — clearly bounded panels, no numbering ---------- */
 .section{
   max-width:1040px;
   margin:28px auto;
@@ -131,10 +125,8 @@ h1,h2,h3,h4{
   background:var(--panel);
   border-radius:8px;
   border:1px solid var(--line);
-  box-shadow:0 4px 16px rgba(20,32,27,0.05);
-  counter-increment:sec;
+  box-shadow:0 4px 16px rgba(16,27,43,0.05);
 }
-body{ counter-reset:sec; }
 
 .section-title{
   margin:0 0 28px 0;
@@ -142,17 +134,17 @@ body{ counter-reset:sec; }
   font-weight:700;
   color:var(--ink);
   display:flex;
-  align-items:baseline;
+  align-items:center;
   gap:14px;
   padding-bottom:20px;
   border-bottom:2px solid var(--paper);
 }
 .section-title::before{
-  content:"0" counter(sec) " —";
-  font-family:'IBM Plex Mono', monospace;
-  font-size:14px;
-  font-weight:500;
-  color:var(--rust);
+  content:"";
+  width:26px; height:3px;
+  background:var(--gold);
+  display:inline-block;
+  flex-shrink:0;
 }
 
 .subheading{
@@ -160,7 +152,7 @@ body{ counter-reset:sec; }
   font-weight:600;
   margin-top:26px;
   margin-bottom:14px;
-  color:var(--forest);
+  color:var(--teal);
   font-family:'IBM Plex Mono', monospace;
   text-transform:uppercase;
   letter-spacing:.07em;
@@ -169,10 +161,10 @@ body{ counter-reset:sec; }
 .section p, .section li{
   font-size:15.5px;
   line-height:1.75;
-  color:#242a20;
+  color:#1c2431;
 }
 
-/* ---------- Skills as tag grid (unchanged approach, kept) ---------- */
+/* ---------- Skills as tag grid ---------- */
 .subheading + ul{
   display:flex; flex-wrap:wrap; gap:10px;
   margin-top:14px; padding-left:0; list-style:none;
@@ -182,29 +174,30 @@ body{ counter-reset:sec; }
   font-size:13px; color:var(--ink);
   background:var(--paper);
   border:1px solid var(--line);
-  border-left:3px solid var(--forest);
+  border-left:3px solid var(--teal);
   padding:9px 16px; margin:0;
   border-radius:0 3px 3px 0;
 }
 
 /* =========================================================
-   LOGOS — shown in full original colour, lifted onto a clean
-   white chip with padding + border so they read clearly no
-   matter what colour the institute's logo actually is.
+   LOGOS — larger, full colour, crisp rendering. If a logo still
+   looks soft, the source PNG itself is low-resolution; swap in
+   a higher-res file (ideally 200px+ tall) for a true HD result.
    ========================================================= */
 .logo-left{
   width:auto;
-  height:40px;
-  max-width:80px;
+  height:60px;
+  max-width:150px;
   object-fit:contain;
-  margin-right:22px;
-  padding:10px;
+  margin-right:24px;
+  padding:12px 16px;
   background:var(--panel);
   border:1px solid var(--line);
   border-radius:6px;
-  box-shadow:0 2px 6px rgba(20,32,27,0.06);
+  box-shadow:0 2px 6px rgba(16,27,43,0.06);
   flex-shrink:0;
-  /* no filter — full original colour for instant institute recognition */
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
 }
 
 .edu-block, .exp-block{
@@ -230,7 +223,7 @@ body{ counter-reset:sec; }
 .proj-block h3::before{ content:""; width:8px; height:8px; background:var(--gold); flex-shrink:0; }
 .proj-block p strong{
   font-family:'IBM Plex Mono', monospace; font-size:11.5px;
-  color:var(--forest); font-weight:600; letter-spacing:.03em;
+  color:var(--teal); font-weight:600; letter-spacing:.03em;
 }
 
 /* ---------- Separator ---------- */
@@ -240,13 +233,13 @@ body{ counter-reset:sec; }
 .hover-card{ transition:transform .18s ease, box-shadow .18s ease; }
 .hover-card:hover{
   transform:translateY(-2px);
-  box-shadow:0 10px 22px rgba(20,32,27,0.08);
+  box-shadow:0 10px 22px rgba(16,27,43,0.08);
 }
 
 /* ---------- Lists (general, non-skills) ---------- */
 ul{ margin-top:12px; padding-left:20px; }
 li{ margin-bottom:9px; padding-left:2px; }
-li::marker{ color:var(--rust); font-family:'IBM Plex Mono', monospace; }
+li::marker{ color:var(--gold); font-family:'IBM Plex Mono', monospace; }
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
@@ -262,7 +255,7 @@ li::marker{ color:var(--rust); font-family:'IBM Plex Mono', monospace; }
 
 @media (max-width:600px){
   .edu-block, .exp-block{ flex-direction:column; }
-  .logo-left{ margin-bottom:14px; }
+  .logo-left{ margin-bottom:14px; height:50px; }
   .hero-center .name{ font-size:26px; }
   body{ border-width:4px; }
 }
