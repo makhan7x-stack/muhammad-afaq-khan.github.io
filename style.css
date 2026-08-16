@@ -1,214 +1,212 @@
 /* =============================================================
-   Muhammad Afaq Khan — Portfolio Stylesheet v3 (multi-page)
-   Shared across index.html / experience.html / projects.html /
-   credentials.html / contact.html
+   Muhammad Afaq Khan — Portfolio Stylesheet v4
+   "Executive" direction: one accent colour, maximum readability,
+   each .section behaves like its own full-height page.
    ============================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --ink:#161f1c;          /* near-black warm charcoal, primary text */
-  --paper:#fbfaf6;        /* clean, high-contrast off-white background */
-  --panel:#ffffff;
-  --rust:#a8461f;         /* accent 1 — CTAs, active nav, highlights */
-  --gold:#b8862a;         /* accent 2 — secondary highlights */
-  --forest:#2c4536;       /* accent 3 — labels, section markers */
-  --line:#e1ded2;         /* hairline borders */
-  --muted:#5b5f57;        /* secondary text, fully readable on paper */
+  --navy:#101b2d;         /* primary text + hero background */
+  --ivory:#fbfaf7;        /* main page background — soft, high-contrast */
+  --panel:#f2f1ea;        /* alternate section tint, still very light */
+  --gold:#a9812f;         /* single accent colour, used sparingly */
+  --slate:#4d5560;        /* secondary/muted text — still readable */
+  --line:#e2e0d6;         /* hairline borders */
 }
 
 *{ box-sizing:border-box; }
 
+html{ scroll-behavior:smooth; }
+
 body{
   margin:0;
-  background:var(--paper);
-  color:var(--ink);
+  background:var(--ivory);
+  color:var(--navy);
   font-family:'Inter', -apple-system, sans-serif;
-  font-size:16.5px;
+  font-size:17px;
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
 }
 
-a{ color:var(--rust); text-decoration:none; }
-a:hover{ color:var(--forest); }
+a{ color:var(--gold); text-decoration:none; }
+a:hover{ color:var(--navy); text-decoration:underline; }
 
 h1,h2,h3,h4{
   font-family:'Fraunces', Georgia, serif;
-  letter-spacing:-0.015em;
-  color:var(--ink);
+  letter-spacing:-0.01em;
+  color:var(--navy);
   margin:0;
 }
 
-.wrap{ max-width:920px; margin:0 auto; padding:0 32px; }
-
 @keyframes fadeIn{ from{opacity:0; transform:translateY(-8px);} to{opacity:1; transform:translateY(0);} }
-@keyframes slideUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
-.fade-in{ animation:fadeIn .7s ease-out; }
+@keyframes slideUp{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+.fade-in{ animation:fadeIn .8s ease-out; }
 .slide-up{ animation:slideUp .6s ease-out both; }
-.slide-up:nth-of-type(2){ animation-delay:.05s; }
-.slide-up:nth-of-type(3){ animation-delay:.1s; }
-.slide-up:nth-of-type(4){ animation-delay:.15s; }
 
-/* ---------- Top navigation ---------- */
-.site-nav{
-  position:sticky; top:0; z-index:100;
-  background:rgba(251,250,246,0.94);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--line);
+/* =========================================================
+   SIDE NAV — paste this markup once, right after <body>:
+
+   <nav class="page-nav">
+     <ul>
+       <li><a href="#summary">01 Summary</a></li>
+       <li><a href="#interests">02 Interests</a></li>
+       <li><a href="#education">03 Education</a></li>
+       <li><a href="#experience">04 Experience</a></li>
+       <li><a href="#skills">05 Skills</a></li>
+       <li><a href="#projects">06 Projects</a></li>
+       <li><a href="#certs">07 Certifications</a></li>
+       <li><a href="#contact">08 Contact</a></li>
+     </ul>
+   </nav>
+
+   Then add a matching id="summary" / id="interests" / etc.
+   to each of your existing <section class="section"> tags,
+   in the same order they already appear on the page.
+   Both edits are one-time — after that this file is all you touch.
+   ========================================================= */
+
+.page-nav{
+  position:fixed;
+  top:0; left:0; bottom:0;
+  width:216px;
+  background:var(--navy);
+  padding:40px 0;
+  z-index:200;
+  overflow-y:auto;
 }
-.site-nav .wrap{
-  display:flex; align-items:center; justify-content:space-between;
-  height:64px; max-width:1000px;
-}
-.site-nav .brand{
-  font-family:'Fraunces', serif;
-  font-weight:700; font-size:17px;
-  color:var(--ink);
-  letter-spacing:-0.01em;
-}
-.site-nav .brand span{ color:var(--rust); }
-.site-nav ul{
-  list-style:none; display:flex; gap:8px; margin:0; padding:0;
-}
-.site-nav a{
+.page-nav ul{ list-style:none; margin:0; padding:0; }
+.page-nav li{ margin:0; }
+.page-nav a{
+  display:block;
   font-family:'IBM Plex Mono', monospace;
-  font-size:12.5px; text-transform:uppercase; letter-spacing:.06em;
-  color:var(--muted);
-  padding:8px 14px;
-  border-radius:3px;
-  display:inline-block;
-  position:relative;
+  font-size:12.5px;
+  letter-spacing:.04em;
+  color:#9aa4b2;
+  padding:13px 28px;
+  border-left:2px solid transparent;
+  text-decoration:none;
 }
-.site-nav a:hover{ color:var(--ink); }
-.site-nav a.active{
-  color:var(--ink);
-  font-weight:600;
-}
-.site-nav a.active::after{
-  content:"";
-  position:absolute;
-  left:14px; right:14px; bottom:2px;
-  height:2px;
-  background:var(--rust);
-}
-.site-nav a.cta{
-  background:var(--ink); color:var(--paper);
-  padding:8px 16px;
-}
-.site-nav a.cta:hover{ background:var(--rust); color:var(--paper); }
+.page-nav a:hover{ color:#fbfaf7; }
 
-@media (max-width:760px){
-  .site-nav ul{ gap:2px; }
-  .site-nav a{ padding:8px 9px; font-size:11px; }
+/* This is the part that makes "selecting" a section visible:
+   when a section is the current URL fragment (#id), the matching
+   nav link — the one whose href matches — is highlighted via the
+   section itself glowing, since CSS can't select "the link that
+   points at the active target" directly. The active PAGE lights up: */
+.section:target{
+  animation:selectedPulse .9s ease-out;
 }
-
-/* ---------- Page header (per-section title strip) ---------- */
-.page-header{
-  padding:64px 0 40px;
-  border-bottom:1px solid var(--line);
+@keyframes selectedPulse{
+  0%{ background:#efe6cd; }
+  100%{ background:inherit; }
 }
-.page-header .eyebrow{
+.section:target .section-title::after{
+  content:"● viewing";
   font-family:'IBM Plex Mono', monospace;
-  font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--rust); margin-bottom:14px;
-}
-.page-header h1{
-  font-size:clamp(30px,4.2vw,44px);
-  font-weight:700;
-}
-.page-header p{
-  margin-top:14px; max-width:620px;
-  color:var(--muted); font-size:16.5px;
+  font-size:11px;
+  color:var(--gold);
+  margin-left:10px;
+  letter-spacing:.04em;
 }
 
-/* ---------- Hero (home page only) ---------- */
+/* Body content sits to the right of the fixed side nav */
+body > .hero,
+body > .section{
+  margin-left:216px;
+}
+
+/* =========================================================
+   PAGE-LIKE SECTIONS
+   Each .section fills the viewport height and snaps into place —
+   scrolling feels like moving through discrete pages, and clicking
+   a nav item jumps straight to its "page".
+   ========================================================= */
+html{
+  scroll-snap-type:y proximity;
+}
+.hero,
+.section{
+  scroll-snap-align:start;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* ---------- Hero ---------- */
 .hero{
-  padding:16px 0 0;
-  display:flex; align-items:center; gap:36px;
+  padding:0 64px;
+  background:var(--navy);
+  color:var(--ivory);
+  flex-direction:row;
+  align-items:center;
+  gap:44px;
 }
 .hero-left{ flex-shrink:0; }
 .profile-img{
-  width:128px; height:128px; border-radius:50%;
-  object-fit:cover; border:3px solid var(--ink);
-  filter:grayscale(35%);
+  width:150px; height:150px; border-radius:50%;
+  object-fit:cover; border:3px solid var(--gold);
 }
 .hero-center .name{
-  font-size:clamp(30px,4.5vw,46px); font-weight:800; line-height:1.05;
+  font-size:clamp(32px,4.5vw,50px); font-weight:700; color:var(--ivory);
 }
 .hero-center .title{
-  font-family:'IBM Plex Mono', monospace; font-size:13px;
-  color:var(--rust); text-transform:uppercase; letter-spacing:.03em;
-  margin-top:12px;
+  font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+  color:var(--gold); text-transform:uppercase; letter-spacing:.04em;
+  margin-top:16px;
 }
 .hero-center .degree{
-  font-size:14.5px; color:var(--muted); margin-top:8px;
+  font-size:15px; color:#c3c9d1; margin-top:10px;
 }
+.hero-right{ flex-shrink:0; }
+.contact-box p{ margin:6px 0; font-size:13px; color:#c3c9d1; font-family:'IBM Plex Mono', monospace; }
+.contact-box strong{ color:var(--ivory); margin-right:6px; }
+.contact-box a{ color:var(--gold); }
 
-/* ---------- Contact box (home + contact page) ---------- */
-.contact-box{
-  font-family:'IBM Plex Mono', monospace;
-  display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;
+/* ---------- Section shells — alternate tint reinforces the "each is its own page" read ---------- */
+.section{
+  padding:64px;
+  background:var(--ivory);
+  border-top:1px solid var(--line);
 }
-.contact-box p{ margin:0; font-size:12.5px; }
-.contact-box a{
-  border:1px solid var(--line); padding:8px 14px; border-radius:3px;
-  color:var(--ink); background:var(--panel);
-}
-.contact-box a:hover{ border-color:var(--rust); color:var(--rust); }
-
-/* ---------- Section shells ---------- */
-.section{ padding:48px 0; border-bottom:1px solid var(--line); }
-.section:last-of-type{ border-bottom:none; }
+.section:nth-of-type(even){ background:var(--panel); }
 
 .section-title{
-  font-size:clamp(20px,2.4vw,26px); font-weight:700;
-  display:flex; align-items:baseline; gap:12px;
-  margin-bottom:26px;
+  font-size:clamp(24px,3vw,32px); font-weight:700;
+  display:flex; align-items:center; gap:14px;
+  margin-bottom:30px;
+  border-bottom:none; padding-bottom:0;
 }
 .section-title::before{
-  content:"§"; font-family:'IBM Plex Mono', monospace;
-  font-size:14px; color:var(--rust);
+  content:""; width:26px; height:2px; background:var(--gold); display:inline-block;
 }
+
 .subheading{
   font-family:'IBM Plex Mono', monospace; font-size:13px;
-  text-transform:uppercase; letter-spacing:.06em; color:var(--forest);
-  margin-top:22px; margin-bottom:10px;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--navy);
+  opacity:.7; margin-top:24px; margin-bottom:12px;
 }
-.section p, .section li{ font-size:15.5px; color:#2c2f29; }
 
-/* ---------- Chips (research interests / focus areas) ---------- */
-.chips{ display:flex; flex-wrap:wrap; gap:9px; }
-.chip{
-  font-family:'IBM Plex Mono', monospace; font-size:12.5px;
-  padding:8px 14px; border:1px solid var(--line); border-radius:3px;
-  background:var(--panel); color:var(--ink);
-}
+.section p, .section li{ font-size:16px; color:#262e39; max-width:760px; }
 
 /* ---------- Logos / experience & education blocks ---------- */
-.logo-left{
-  width:40px; height:auto; margin-right:20px;
-  filter:grayscale(100%) contrast(1.2); opacity:.8;
-}
+.logo-left{ width:42px; height:auto; margin-right:20px; filter:grayscale(100%) contrast(1.15); opacity:.8; }
 .edu-block, .exp-block{
   display:flex; align-items:flex-start;
-  padding:26px 0; border-top:1px solid var(--line);
+  padding:24px 0; border-top:1px solid var(--line);
 }
 .edu-block:first-of-type, .exp-block:first-of-type{ border-top:none; padding-top:0; }
 .edu-text, .exp-text{ flex:1; }
-.edu-text h3, .exp-text h3{ font-size:18.5px; font-weight:700; margin-bottom:8px; }
-.edu-text ul, .exp-text ul{ margin-top:12px; }
+.edu-text h3, .exp-text h3{ font-size:19px; font-weight:700; margin-bottom:8px; }
 
 /* ---------- Projects ---------- */
-.proj-block{ padding:24px 0; border-top:1px solid var(--line); }
+.proj-block{ padding:22px 0; border-top:1px solid var(--line); max-width:760px; }
 .proj-block:first-of-type{ border-top:none; padding-top:0; }
-.proj-block h3{
-  font-size:17.5px; font-weight:700; margin-bottom:6px;
-  display:flex; align-items:center; gap:10px;
-}
-.proj-block h3::before{ content:""; width:8px; height:8px; background:var(--gold); flex-shrink:0; }
+.proj-block h3{ font-size:17.5px; font-weight:700; margin-bottom:6px; }
 .proj-block p strong{
   font-family:'IBM Plex Mono', monospace; font-size:11.5px;
-  color:var(--forest); font-weight:600; letter-spacing:.03em;
+  color:var(--gold); font-weight:600; letter-spacing:.03em;
 }
 
 /* ---------- Separator ---------- */
@@ -216,45 +214,28 @@ h1,h2,h3,h4{
 
 /* ---------- Hover cards ---------- */
 .hover-card{ transition:padding-left .18s ease, border-color .18s ease; }
-.hover-card:hover{ padding-left:14px; border-left:3px solid var(--rust); }
+.hover-card:hover{ padding-left:14px; border-left:3px solid var(--gold); }
 
 /* ---------- Lists ---------- */
 ul{ margin-top:10px; padding-left:20px; }
 li{ margin-bottom:9px; padding-left:2px; }
-li::marker{ color:var(--rust); font-family:'IBM Plex Mono', monospace; }
+li::marker{ color:var(--gold); }
 
-/* ---------- Two-column credential list ---------- */
-.cred-cols{ display:grid; grid-template-columns:1fr 1fr; gap:44px; }
-.cred-cols ul{ list-style:none; margin:0; padding:0; }
-.cred-cols li{
-  padding:11px 0; border-bottom:1px solid var(--line);
-  display:flex; justify-content:space-between; gap:12px; font-size:15px;
-}
-.cred-cols li span.mono{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); }
-@media (max-width:700px){ .cred-cols{ grid-template-columns:1fr; } }
-
-/* ---------- Contact / CTA page ---------- */
-.cta-panel{
-  background:var(--ink); color:var(--paper);
-  border-radius:6px; padding:56px 48px; text-align:left;
-}
-.cta-panel h2{ color:var(--paper); font-size:clamp(26px,3.6vw,36px); max-width:560px; }
-.cta-panel p{ color:#cfd6cd; max-width:520px; margin-top:14px; }
-.cta-panel .contact-box a{
-  background:transparent; border-color:rgba(255,255,255,.3); color:var(--paper);
-}
-.cta-panel .contact-box a:hover{ border-color:var(--gold); color:var(--gold); }
-
-/* ---------- Footer ---------- */
-.site-footer{
-  padding:32px 0 48px;
-  font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted);
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+/* ---------- Responsive: side nav collapses to a top bar ---------- */
+@media (max-width:900px){
+  .page-nav{
+    position:sticky; top:0; left:0; bottom:auto;
+    width:100%; height:auto; padding:0;
+    display:flex; overflow-x:auto;
+  }
+  .page-nav a{ padding:14px 18px; white-space:nowrap; border-left:none; border-bottom:2px solid transparent; }
+  body > .hero, body > .section{ margin-left:0; }
+  .hero{ flex-direction:column; align-items:flex-start; padding:48px 32px; }
+  .section{ padding:48px 32px; min-height:auto; }
+  html{ scroll-snap-type:none; }
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width:760px){
-  .hero{ flex-direction:column; align-items:flex-start; }
+@media (max-width:600px){
   .edu-block, .exp-block{ flex-direction:column; }
   .logo-left{ margin-bottom:12px; }
 }
